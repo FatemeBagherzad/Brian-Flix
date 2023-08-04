@@ -1,0 +1,22 @@
+@use './variables' as *;
+
+@mixin tablet {
+  @media screen and (min-width: $tablet-width) {
+    @content;
+  }
+}
+@mixin desktop {
+  @media screen and (min-width: $desktop-width) {
+    @content;
+  }
+}
+@mixin smallScreen {
+  @media screen and (max-width: $small-width) {
+    @content;
+  }
+}
+@mixin deviceLandscape {
+  @media only screen and (max-device-width: $landscape-narrowHeight-width) and (orientation: landscape) {
+    @content;
+  }
+}

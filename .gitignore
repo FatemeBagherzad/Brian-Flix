@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+src/Assets/0-Mockups/*
+src/Assets/0-Style Guide/*

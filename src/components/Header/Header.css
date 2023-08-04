@@ -1,0 +1,155 @@
+@font-face {
+  font-family: "Avenir";
+  src: url("../../assets/font/AvenirNextLTProRegular.otf") format(OpenType);
+  src: url("../../assets/font/AvenirNextLTProRegular.otf") format(truetype);
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Avenir";
+  src: url("../../assets/font/AvenirNextLTProBold.otf") format(OpenType);
+  src: url("../../assets/font/alternativefiles/AvenirNextLTProBold.ttf") format(truetype);
+  font-weight: 700;
+  font-style: normal;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Avenir";
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1.8rem;
+  color: #323232;
+  transition: all 0.5s 0.5s ease-in-out;
+}
+
+ul,
+a {
+  text-decoration: none;
+  list-style: none;
+  color: inherit;
+  padding: 0;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 1.6rem 0 1.6rem;
+  max-width: 70rem;
+}
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 0 3.6rem 0 3.6rem;
+    max-width: 78rem;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .container {
+    max-width: 128rem;
+  }
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+  padding: 1.6rem 0;
+}
+@media screen and (min-width: 768px) {
+  .nav {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+.nav__logo {
+  height: 25px;
+}
+.nav__right {
+  display: grid;
+  grid-template-areas: "search search search search search search search search search user" "upload upload upload upload upload upload upload upload upload upload";
+  width: 100%;
+  position: relative;
+}
+@media screen and (min-width: 768px) {
+  .nav__right {
+    display: flex;
+    align-items: center;
+    width: auto;
+    gap: 1.6rem;
+  }
+}
+.nav__right--searchWrapper {
+  grid-area: search;
+  display: flex;
+  align-items: center;
+}
+.nav__right--searchWrapper-icon {
+  height: 2rem;
+  position: absolute;
+  left: 1rem;
+}
+.nav__right--searchWrapper-input {
+  height: 4rem;
+  padding: 1rem 4rem;
+  width: 100%;
+  background-color: #fafafa;
+  border: 1px solid #e1e1e1;
+  border-radius: 4px;
+  outline: none;
+}
+.nav__right--searchWrapper-input:focus {
+  border: 2px solid #0065ad;
+}
+@media screen and (min-width: 768px) {
+  .nav__right--searchWrapper-input {
+    min-width: 20rem;
+  }
+}
+.nav__right--uploadBtn {
+  grid-area: upload;
+  height: 4rem;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #0095ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 4px;
+  margin-top: 1.6rem;
+  position: relative;
+}
+.nav__right--uploadBtn:hover {
+  cursor: pointer;
+  background-color: #0065ad;
+}
+.nav__right--uploadBtn-icon {
+  position: absolute;
+  left: 0.5rem;
+}
+@media screen and (min-width: 768px) {
+  .nav__right--uploadBtn {
+    margin: 0;
+    width: 15rem;
+  }
+}
+.nav__right--userImg {
+  grid-area: user;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  justify-self: end;
+}
