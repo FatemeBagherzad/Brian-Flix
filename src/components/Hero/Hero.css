@@ -1,0 +1,185 @@
+@font-face {
+  font-family: "Avenir";
+  src: url("../../assets/font/AvenirNextLTProRegular.otf") format(OpenType);
+  src: url("../../assets/font/AvenirNextLTProRegular.otf") format(truetype);
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Avenir";
+  src: url("../../assets/font/AvenirNextLTProBold.otf") format(OpenType);
+  src: url("../../assets/font/alternativefiles/AvenirNextLTProBold.ttf") format(truetype);
+  font-weight: 700;
+  font-style: normal;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Avenir";
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1.8rem;
+  color: #323232;
+  transition: all 0.5s 0.5s ease-in-out;
+}
+
+ul,
+a {
+  text-decoration: none;
+  list-style: none;
+  color: inherit;
+  padding: 0;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 1.6rem 0 1.6rem;
+  max-width: 70rem;
+}
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 0 3.6rem 0 3.6rem;
+    max-width: 78rem;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .container {
+    max-width: 128rem;
+  }
+}
+
+.hero {
+  width: 100vw;
+  height: 55.5555555556vw;
+  background-color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+@media screen and (min-width: 768px) {
+  .hero {
+    height: 40rem;
+    padding: 0 2rem;
+  }
+}
+.hero__video {
+  width: auto;
+  height: 100%;
+}
+@media screen and (min-width: 768px) {
+  .hero__video {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+}
+
+.controls {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+@media screen and (min-width: 768px) {
+  .controls {
+    margin: auto;
+    width: 90%;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .controls {
+    width: 55%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .controls {
+    margin: auto;
+    width: 90%;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .controls {
+    width: 55%;
+  }
+}
+.controls__containers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3137254902);
+  height: 35px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.controls__slideBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3137254902);
+  height: 35px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  width: 100%;
+}
+.controls button,
+.controls input[type=range],
+.controls span {
+  color: #fff;
+  font-size: 16px;
+  margin-right: 10px;
+  border: none;
+  background-color: transparent;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+}
+.controls button:hover,
+.controls input[type=range]:hover,
+.controls span:hover {
+  opacity: 0.8;
+}
+.controls button:active,
+.controls input[type=range]:active,
+.controls span:active {
+  opacity: 0.6;
+  color: #0095ff;
+}
+.controls input[type=range] {
+  width: 100%;
+  height: 7px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.volumeBtn {
+  position: relative;
+}
+
+.volume {
+  display: flex;
+  align-items: center;
+  width: 10rem;
+  height: 20px;
+  right: 0;
+  bottom: 30px;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.3137254902);
+  padding: 2px 2px;
+  border-radius: 5px;
+}
+
+#volume {
+  display: none;
+}

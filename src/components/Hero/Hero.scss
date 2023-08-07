@@ -1,0 +1,144 @@
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/globals' as *;
+
+.hero {
+  width: 100vw;
+  height: calc(100vw / 1.8);
+  background-color: $video-bg-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  @include tablet {
+    height: 40rem;
+    padding: 0 2rem;
+  }
+  &__video {
+    width: auto;
+    height: 100%;
+    @include tablet {
+      margin-left: 2rem;
+      margin-right: 2rem;
+    }
+  }
+}
+
+.controls {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  @include tablet {
+    margin: auto;
+    width: 90%;
+  }
+  @include desktop {
+    width: 55%;
+  }
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  @include tablet {
+    margin: auto;
+    width: 90%;
+  }
+  @include desktop {
+    width: 55%;
+  }
+  &__containers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00000050;
+    height: 35px;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  &__slideBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00000050;
+    height: 35px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    width: 100%;
+  }
+  & button,
+  input[type='range'],
+  span {
+    color: #fff;
+    font-size: 16px;
+    margin-right: 10px;
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    &:hover {
+      opacity: 0.8;
+    }
+    &:active {
+      opacity: 0.6;
+      color: $cta-outline-color;
+    }
+  }
+
+  & input[type='range'] {
+    // -webkit-appearance: none;
+    width: 100%;
+    height: 7px;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+}
+//style volume btn to call by click
+.volumeBtn {
+  position: relative;
+}
+.volume {
+  display: flex;
+  align-items: center;
+  width: 10rem;
+  height: 20px;
+  right: 0;
+  bottom: 30px;
+  position: absolute;
+  background-color: #00000050;
+  padding: 2px 2px;
+  border-radius: 5px;
+}
+#volume {
+  display: none;
+}
+// .controls input[type='range'],
+// .controls progress::-webkit-slider-thumb {
+//   -webkit-appearance: none;
+//   appearance: none;
+//   width: 15px;
+//   height: 15px;
+//   border-radius: 50%;
+//   background-color: $cta-outline-color;
+//   cursor: pointer;
+// }
+
+// .controls input[type='range'],.controls progress::-moz-range-thumb {
+//   width: 15px;
+//   height: 10px;
+//   border-radius: 50%;
+//   background-color: $cta-outline-color;
+//   cursor: pointer;
+// }
+
+// .controls span {
+//   font-weight: bold;
+// }
+// .controls .active-icon {
+//   color: $cta-outline-color;
+// }
+// .controls .inactive-icon {
+//   color: #fff;
+//   opacity: 0.5;
+// }
