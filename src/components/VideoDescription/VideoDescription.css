@@ -32,6 +32,12 @@ body {
   color: #323232;
   transition: all 0.5s 0.5s ease-in-out;
 }
+@media screen and (min-width: 768px) {
+  body {
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+  }
+}
 
 ul,
 a {
@@ -39,6 +45,11 @@ a {
   list-style: none;
   color: inherit;
   padding: 0;
+}
+
+hr {
+  border: 1px solid #e1e1e1;
+  margin: 1.6rem 0;
 }
 
 .container {
@@ -56,4 +67,48 @@ a {
   .container {
     max-width: 128rem;
   }
+}
+
+.VideoDes__title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  padding-bottom: 1.6rem;
+  margin-bottom: 1.6rem;
+  border-bottom: 2px solid #e1e1e1;
+}
+@media screen and (min-width: 768px) {
+  .VideoDes__title {
+    font-size: 3.3rem;
+    border-bottom: none;
+  }
+}
+.VideoDes__info {
+  display: flex;
+  justify-content: space-between;
+}
+.VideoDes__info-left, .VideoDes__info-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: #afafaf;
+  font-size: 1.4rem;
+}
+@media screen and (min-width: 768px) {
+  .VideoDes__info-left, .VideoDes__info-right {
+    flex-direction: row;
+    gap: 2rem;
+  }
+}
+.VideoDes__info-left-item, .VideoDes__info-right-item {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+}
+.VideoDes__info-left-item-channel, .VideoDes__info-right-item-channel {
+  font-weight: 700;
+  color: #323232;
+}
+.VideoDes__description {
+  margin-bottom: 3.4rem;
 }

@@ -19,6 +19,10 @@ body {
   line-height: 1.8rem;
   color: $txt-color-1;
   transition: all 0.5s 0.5s ease-in-out;
+  @include tablet {
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+  }
 }
 ul,
 a {
@@ -26,6 +30,10 @@ a {
   list-style: none;
   color: inherit;
   padding: 0;
+}
+hr {
+  border: 1px solid $divider-color;
+  margin: 1.6rem 0;
 }
 .container {
   margin: 0 auto;

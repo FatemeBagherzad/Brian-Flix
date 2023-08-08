@@ -13,10 +13,9 @@ import {
 import video from '../../assets/video/stream.mp4';
 import './Hero.scss';
 
-const Hero = () => {
+const Hero = (props) => {
   const videoContainerRef = useRef(null);
   const videoRef = useRef(null);
-  // const[currentstate,the function that is used to update our state]=useState("");
   const [isPlaying, setIsPlaying] = useState(false);
   const [playbackRate, setPlaybackRate] = useState(0);
   const [isLooping, setIsLooping] = useState(false);
@@ -46,12 +45,6 @@ const Hero = () => {
     let b = currentTime.toFixed(2);
     setPlaybackRate(b);
   };
-  // const handlePlaybackRateChange = (event) => {
-  //   var d = new Date(event.timeStamp);
-  //   setPlaybackRate(event.timeStamp);
-  //   videoRef.current.playbackRate = event.target.value;
-  //   console.log(d.toTimeString());
-  // };
   const handleSubtitles = () => {
     setShowSubtitles(!showSubtitles);
   };
@@ -77,7 +70,7 @@ const Hero = () => {
         onTimeUpdate={handleProgress}
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
-        poster="https://i.imgur.com/l2Xfgpl.jpg"
+        poster={props.video.image}
         className="hero__video"
       >
         <source src={video} type="video/mp4" />

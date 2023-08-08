@@ -32,6 +32,12 @@ body {
   color: #323232;
   transition: all 0.5s 0.5s ease-in-out;
 }
+@media screen and (min-width: 768px) {
+  body {
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+  }
+}
 
 ul,
 a {
@@ -39,6 +45,11 @@ a {
   list-style: none;
   color: inherit;
   padding: 0;
+}
+
+hr {
+  border: 1px solid #e1e1e1;
+  margin: 1.6rem 0;
 }
 
 .container {
