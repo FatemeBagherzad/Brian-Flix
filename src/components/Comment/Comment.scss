@@ -9,13 +9,8 @@
   align-items: center;
   width: 100%;
   margin: auto;
-  // gap: 1rem;
-  // font-size: 1.8rem;
-  // line-height: 2;
-  // @include tablet {
-  //   font-size: 2.2rem;
-  //   line-height: 1.5;
-  // }
+  position: relative;
+
   @include smallScreen {
     flex-direction: column;
   }
@@ -31,8 +26,12 @@
   }
   &__img {
     background-color: $divider-color;
-    width: 6rem;
-    height: 6rem;
+    width: 3.6rem;
+    height: 3.6rem;
+    @include tablet {
+      width: 4rem;
+      height: 4rem;
+    }
     border-radius: 50%;
     align-self: flex-start;
   }
@@ -66,7 +65,6 @@
     }
   }
   &__commentIcons {
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -83,14 +81,14 @@
     &-wrapper {
       display: flex;
       align-items: center;
-      padding: 0.7rem 0.5rem;
+      padding: 0.4rem 0.5rem;
       @include tablet {
-        padding: 0.7rem 2rem;
+        padding: 0.4rem 2rem;
       }
       border-radius: 0.5rem;
       &:hover {
         cursor: pointer;
-        background-color: $label-color;
+        background-color: $form-bg-color;
       }
     }
     &-icon {
@@ -99,17 +97,20 @@
     }
   }
   &__more {
-    font-size: 1.5;
+    font-size: 1rem;
     color: $label-color;
     right: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 1rem;
-    width: 20rem;
+    width: 13rem;
     height: 18rem;
-    padding: 2rem 1rem;
-    background-color: $label-color;
+    @include tablet {
+      height: 12rem;
+    }
+    padding: 1rem 0.7rem;
+    background-color: $form-bg-color;
     border: 1px solid $label-color;
     border-radius: 1rem;
     position: absolute;
@@ -125,7 +126,7 @@
       border-radius: 0.5rem;
       &:hover {
         cursor: pointer;
-        background-color: $label-color;
+        background-color: $divider-color;
       }
     }
   }
@@ -141,6 +142,6 @@
     display: none;
   }
 }
-.actOnComment {
+#actOnComment {
   display: none;
 }

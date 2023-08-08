@@ -2,9 +2,10 @@ import Video from '../Video/Video';
 import '../VideoList/VideoList.scss';
 
 const VideoList = ({ videos, setVideos, setHero, hero }) => {
+  const allVideosButHero = videos.filter((obj) => obj.id !== hero.id);
   return (
     <section className="videoList">
-      {videos.map((video, index) => (
+      {allVideosButHero.map((video, index) => (
         <Video
           key={index}
           id={video.id}
@@ -12,7 +13,7 @@ const VideoList = ({ videos, setVideos, setHero, hero }) => {
           channel={video.channel}
           image={video.image}
           setVideos={setVideos}
-          videos={videos}
+          videos={allVideosButHero}
           setHero={setHero}
           hero={hero}
         />

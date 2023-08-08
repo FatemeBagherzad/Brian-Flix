@@ -76,6 +76,7 @@ hr {
   align-items: center;
   width: 100%;
   margin: auto;
+  position: relative;
 }
 @media screen and (max-width: 320px) {
   .comment {
@@ -94,10 +95,16 @@ hr {
 }
 .comment__img {
   background-color: #e1e1e1;
-  width: 6rem;
-  height: 6rem;
+  width: 3.6rem;
+  height: 3.6rem;
   border-radius: 50%;
   align-self: flex-start;
+}
+@media screen and (min-width: 768px) {
+  .comment__img {
+    width: 4rem;
+    height: 4rem;
+  }
 }
 .comment__TxtWrapper {
   display: flex;
@@ -129,7 +136,6 @@ hr {
   opacity: 0.3;
 }
 .comment__commentIcons {
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -149,34 +155,34 @@ hr {
 .comment__commentIcons-wrapper {
   display: flex;
   align-items: center;
-  padding: 0.7rem 0.5rem;
+  padding: 0.4rem 0.5rem;
   border-radius: 0.5rem;
 }
 @media screen and (min-width: 768px) {
   .comment__commentIcons-wrapper {
-    padding: 0.7rem 2rem;
+    padding: 0.4rem 2rem;
   }
 }
 .comment__commentIcons-wrapper:hover {
   cursor: pointer;
-  background-color: #afafaf;
+  background-color: #fafafa;
 }
 .comment__commentIcons-icon {
   width: 3rem;
   margin-right: 0.7rem;
 }
 .comment__more {
-  font-size: 1.5;
+  font-size: 1rem;
   color: #afafaf;
   right: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
-  width: 20rem;
+  width: 13rem;
   height: 18rem;
-  padding: 2rem 1rem;
-  background-color: #afafaf;
+  padding: 1rem 0.7rem;
+  background-color: #fafafa;
   border: 1px solid #afafaf;
   border-radius: 1rem;
   position: absolute;
@@ -184,6 +190,11 @@ hr {
   right: 0;
   box-shadow: 0px 0.5rem 1rem 0px rgba(62, 62, 62, 0.2);
   z-index: 999;
+}
+@media screen and (min-width: 768px) {
+  .comment__more {
+    height: 12rem;
+  }
 }
 .comment__more-item {
   display: flex;
@@ -193,7 +204,7 @@ hr {
 }
 .comment__more-item:hover {
   cursor: pointer;
-  background-color: #afafaf;
+  background-color: #e1e1e1;
 }
 
 #repostm {
@@ -211,6 +222,6 @@ hr {
   }
 }
 
-.actOnComment {
+#actOnComment {
   display: none;
 }

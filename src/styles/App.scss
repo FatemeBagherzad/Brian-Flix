@@ -18,4 +18,9 @@
       width: 80%;
     }
   }
+  &__videos {
+    &-title {
+      color: $label-color;
+    }
+  }
 }

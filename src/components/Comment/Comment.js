@@ -6,8 +6,11 @@ import likethumbIcon from '../../assets/icons/like2.png';
 import moreIcon from '../../assets/icons/more.png';
 import deleteIcon from '../../assets/icons/delete.png';
 import editIcon from '../../assets/icons/edit.png';
+import { useState } from 'react';
 
 const Comment = ({ id, name, commentTimestamp, comment, likes }) => {
+  //-----------------------
+  //convert time stamp
   let timestmp = new Date(commentTimestamp);
   let dateFinalFormat =
     timestmp.getDate() +
@@ -15,6 +18,13 @@ const Comment = ({ id, name, commentTimestamp, comment, likes }) => {
     (timestmp.getMonth() + 1) +
     '/' +
     timestmp.getFullYear();
+  //---------------------------------
+  //function for comment side menu
+  const [isActive, setActive] = useState('false');
+  const openCommentMenu = () => {
+    setActive(!isActive);
+  };
+
   return (
     <div>
       <div className="comment">
@@ -57,11 +67,18 @@ const Comment = ({ id, name, commentTimestamp, comment, likes }) => {
             <span>Like</span>
           </div>
 
-          <div className="comment__commentIcons-wrapper" id="dropUp">
+          <div
+            className="comment__commentIcons-wrapper"
+            id="dropUp"
+            onClick={openCommentMenu}
+          >
             <img src={moreIcon} className="comment__commentIcons-icon" />
           </div>
+        </div>
 
-          <div className="comment__more container actOnComment">
+        {/* drop Up menu fpr comments */}
+        <div id={isActive ? 'actOnComment' : null}>
+          <div className="comment__more ">
             <a className="comment__more-item">
               <img src={deleteIcon} className="comment__commentIcons-icon" />
               <span> Delete post </span>

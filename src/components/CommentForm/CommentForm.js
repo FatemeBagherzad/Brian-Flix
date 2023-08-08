@@ -10,7 +10,7 @@ const CommentForm = () => {
       <form className="formSection">
         <img alt="Person Proflie" src={userImg} className="formSection__img" />
         <div className="formSection__form" id="formSection__form">
-          <label for="comment" className="formSection__form--label">
+          <label className="formSection__form--label">
             JOIN THE CONVERSATION
           </label>
           <div className="formSection__form--textBtnWrapper">
@@ -19,7 +19,6 @@ const CommentForm = () => {
               name="comment"
               placeholder="Add a new comment"
               className="formSection__form--textArea"
-              autocomplete="off"
             ></textarea>
 
             <button className="formSection__form--btn">

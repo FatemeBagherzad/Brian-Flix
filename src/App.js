@@ -24,7 +24,7 @@ function App() {
         </div>
 
         <div className="textContainer__videos">
-          <span>NEXT VIDEOS</span>
+          <span className="textContainer__videos-title">NEXT VIDEOS</span>
           <VideoList
             videos={videos}
             setVideos={setVideos}
