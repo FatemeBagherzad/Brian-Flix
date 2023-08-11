@@ -12,10 +12,11 @@ const Video = ({
   hero,
 }) => {
   const updateVideoList = () => {
+    console.log(hero);
     let clickedId = id;
-    const filtereDt = videos.filter((obj) => obj.id !== clickedId);
-    filtereDt.push(hero);
-    setVideos(filtereDt);
+    const filterDt = videos.filter((obj) => obj.id !== clickedId);
+    filterDt.push(hero);
+    setVideos(filterDt);
     let newHero = videos.filter((obj) => obj.id === clickedId)[0];
     setHero(newHero);
   };

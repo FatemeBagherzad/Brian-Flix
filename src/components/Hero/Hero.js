@@ -21,10 +21,9 @@ const Hero = (props) => {
   const [remaintime, setRemaintime] = useState('0:00');
   const [isLooping, setIsLooping] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [pWidth, setPWidth] = useState(0);
   const [showSubtitles, setShowSubtitles] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [volume, setVolume] = useState(0.5);
+  const [volume, setVolume] = useState(1);
 
   const handlePlayPause = () => {
     if (isPlaying) {
@@ -40,9 +39,13 @@ const Hero = (props) => {
     videoRef.current.loop = !isLooping;
   };
   const handleProgress = () => {
+    videoRef.current.volume = volume;
+    setProgress(0);
+
     const duration = videoRef.current.duration;
     const currentTime = videoRef.current.currentTime;
     const prog = (currentTime / duration) * 100;
+
     setProgress(prog);
 
     let remain = (duration - currentTime).toFixed(2);
@@ -51,9 +54,8 @@ const Hero = (props) => {
     let playtm = currentTime.toFixed(2);
     setPlaytime(playtm);
 
-    console.log(progress);
-    if (prog === 100) {
-      setProgress('0:00');
+    if (progress > 98) {
+      setProgress(0);
       setPlaytime('0:00');
       setRemaintime('0:00');
     }
@@ -116,7 +118,7 @@ const Hero = (props) => {
             />
             <div
               className="controls__input--overlay"
-              style={{ width: progress }}
+              style={{ width: `${progress}%` }}
             ></div>
           </div>
           <span className="controls__containers--btn">
