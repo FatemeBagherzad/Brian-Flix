@@ -32,5 +32,5 @@ And to bring back the libray:
 
 <li>📝 npm i
 
-👉Please Hlep me with your feedback about thi project 🙂⭐
+👉Please Help me with your valuable feedback about this project 🙂⭐</br>
 Let's connect via LinkedIn : [link](https://www.linkedin.com/in/fatemeh-bagherzad/)
