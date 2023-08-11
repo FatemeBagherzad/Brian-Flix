@@ -17,6 +17,7 @@
   &__video {
     width: auto;
     height: 100%;
+    object-fit: inherit;
     @include tablet {
       margin-left: 2rem;
       margin-right: 2rem;
@@ -24,21 +25,14 @@
   }
 }
 
+//--------------------------------
 .controls {
   position: absolute;
   bottom: 10px;
   width: 100%;
-  @include tablet {
-    margin: auto;
-    width: 90%;
-  }
-  @include desktop {
-    width: 55%;
-  }
   display: flex;
   align-items: center;
   gap: 1rem;
-
   @include tablet {
     margin: auto;
     width: 90%;
@@ -46,6 +40,7 @@
   @include desktop {
     width: 55%;
   }
+
   &__containers {
     display: flex;
     justify-content: center;
@@ -54,28 +49,115 @@
     height: 35px;
     padding: 5px 10px;
     border-radius: 5px;
+    &--btn {
+      font-size: 12px;
+      margin-right: 10px;
+      border: none;
+      background-color: transparent;
+      color: #fff;
+      cursor: pointer;
+      outline: none;
+      &:hover {
+        opacity: 0.8;
+      }
+      &:active {
+        opacity: 0.6;
+        color: $cta-outline-color;
+      }
+    }
   }
+
   &__slideBar {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 3px;
     background-color: #00000050;
     height: 35px;
     padding: 5px 10px;
     border-radius: 5px;
     width: 100%;
   }
-  & button,
-  input[type='range'],
-  span {
-    color: #fff;
-    font-size: 16px;
+  &__inputWrapper {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  &__input {
+    -webkit-appearance: none;
+    font-size: 12px;
     margin-right: 10px;
     border: none;
-    background-color: transparent;
-    font-weight: bold;
-    cursor: pointer;
+    width: 100%;
+    height: 5px;
+    border-radius: 5px;
+    background-color: $video-bg-color;
     outline: none;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
+    &:active {
+      opacity: 0.6;
+      color: $cta-outline-color;
+    }
+    &--overlay {
+      position: absolute;
+      left: 0;
+      height: 5px;
+      // width: 50%;
+      background-color: #0065ad;
+      opacity: 0.6;
+    }
+  }
+
+  & input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    // translate: 0 -4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: $cta-outline-color;
+    cursor: pointer;
+  }
+  & input[type='range']::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 7px;
+    cursor: pointer;
+  }
+}
+.volumeBtn {
+  position: relative;
+}
+#volume {
+  display: none;
+}
+.volume {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 80px;
+  right: 0px;
+  bottom: 25px;
+  padding: 10px 0;
+  position: absolute;
+  background-color: #00000050;
+  padding: 2px 2px;
+  border-radius: 5px;
+  &__input {
+    appearance: slider-vertical;
+    /*  safari  */
+    -webkit-appearance: slider-vertical;
+    border: none;
+    height: 100%;
+    width: 5px;
+    border-radius: 5px;
+    background-color: $video-bg-color;
+    outline: none;
+    cursor: pointer;
     &:hover {
       opacity: 0.8;
     }
@@ -84,60 +166,19 @@
       color: $cta-outline-color;
     }
   }
-
-  & input[type='range'] {
-    // -webkit-appearance: none;
-    width: 100%;
-    height: 7px;
-    border-radius: 5px;
-    background-color: #fff;
-  }
 }
-//style volume btn to call by click
-.volumeBtn {
-  position: relative;
+.volume__input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  translate: 4px 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: $cta-outline-color;
+  cursor: pointer;
 }
-.volume {
-  display: flex;
-  align-items: center;
-  width: 10rem;
-  height: 20px;
-  right: 0;
-  bottom: 30px;
-  position: absolute;
-  background-color: #00000050;
-  padding: 2px 2px;
-  border-radius: 5px;
+.volume__input::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 7px;
+  cursor: pointer;
 }
-#volume {
-  display: none;
-}
-// .controls input[type='range'],
-// .controls progress::-webkit-slider-thumb {
-//   -webkit-appearance: none;
-//   appearance: none;
-//   width: 15px;
-//   height: 15px;
-//   border-radius: 50%;
-//   background-color: $cta-outline-color;
-//   cursor: pointer;
-// }
-
-// .controls input[type='range'],.controls progress::-moz-range-thumb {
-//   width: 15px;
-//   height: 10px;
-//   border-radius: 50%;
-//   background-color: $cta-outline-color;
-//   cursor: pointer;
-// }
-
-// .controls span {
-//   font-weight: bold;
-// }
-// .controls .active-icon {
-//   color: $cta-outline-color;
-// }
-// .controls .inactive-icon {
-//   color: #fff;
-//   opacity: 0.5;
-// }

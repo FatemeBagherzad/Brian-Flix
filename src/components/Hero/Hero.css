@@ -87,6 +87,8 @@ hr {
 .hero__video {
   width: auto;
   height: 100%;
+  -o-object-fit: inherit;
+     object-fit: inherit;
 }
 @media screen and (min-width: 768px) {
   .hero__video {
@@ -114,17 +116,6 @@ hr {
     width: 55%;
   }
 }
-@media screen and (min-width: 768px) {
-  .controls {
-    margin: auto;
-    width: 90%;
-  }
-}
-@media screen and (min-width: 1280px) {
-  .controls {
-    width: 55%;
-  }
-}
 .controls__containers {
   display: flex;
   justify-content: center;
@@ -134,63 +125,136 @@ hr {
   padding: 5px 10px;
   border-radius: 5px;
 }
+.controls__containers--btn {
+  font-size: 12px;
+  margin-right: 10px;
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+}
+.controls__containers--btn:hover {
+  opacity: 0.8;
+}
+.controls__containers--btn:active {
+  opacity: 0.6;
+  color: #0095ff;
+}
 .controls__slideBar {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 3px;
   background-color: rgba(0, 0, 0, 0.3137254902);
   height: 35px;
   padding: 5px 10px;
   border-radius: 5px;
   width: 100%;
 }
-.controls button,
-.controls input[type=range],
-.controls span {
-  color: #fff;
-  font-size: 16px;
+.controls__inputWrapper {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.controls__input {
+  -webkit-appearance: none;
+  font-size: 12px;
   margin-right: 10px;
   border: none;
-  background-color: transparent;
-  font-weight: bold;
-  cursor: pointer;
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;
+  background-color: #000000;
   outline: none;
+  cursor: pointer;
 }
-.controls button:hover,
-.controls input[type=range]:hover,
-.controls span:hover {
+.controls__input:hover {
   opacity: 0.8;
 }
-.controls button:active,
-.controls input[type=range]:active,
-.controls span:active {
+.controls__input:active {
   opacity: 0.6;
   color: #0095ff;
 }
-.controls input[type=range] {
+.controls__input--overlay {
+  position: absolute;
+  left: 0;
+  height: 5px;
+  background-color: #0065ad;
+  opacity: 0.6;
+}
+.controls input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #0095ff;
+  cursor: pointer;
+}
+.controls input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
   height: 7px;
-  border-radius: 5px;
-  background-color: #fff;
+  cursor: pointer;
 }
 
 .volumeBtn {
   position: relative;
 }
 
+#volume {
+  display: none;
+}
+
 .volume {
   display: flex;
   align-items: center;
-  width: 10rem;
-  height: 20px;
-  right: 0;
-  bottom: 30px;
+  justify-content: center;
+  width: 30px;
+  height: 80px;
+  right: 0px;
+  bottom: 25px;
+  padding: 10px 0;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.3137254902);
   padding: 2px 2px;
   border-radius: 5px;
 }
+.volume__input {
+  -moz-appearance: slider-vertical;
+       appearance: slider-vertical;
+  /*  safari  */
+  -webkit-appearance: slider-vertical;
+  border: none;
+  height: 100%;
+  width: 5px;
+  border-radius: 5px;
+  background-color: #000000;
+  outline: none;
+  cursor: pointer;
+}
+.volume__input:hover {
+  opacity: 0.8;
+}
+.volume__input:active {
+  opacity: 0.6;
+  color: #0095ff;
+}
 
-#volume {
-  display: none;
+.volume__input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  translate: 4px 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #0095ff;
+  cursor: pointer;
+}
+
+.volume__input::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 7px;
+  cursor: pointer;
 }

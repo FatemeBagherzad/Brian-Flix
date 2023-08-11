@@ -17,12 +17,14 @@ const Hero = (props) => {
   const videoContainerRef = useRef(null);
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [playbackRate, setPlaybackRate] = useState(0);
+  const [playtime, setPlaytime] = useState('0:00');
+  const [remaintime, setRemaintime] = useState('0:00');
   const [isLooping, setIsLooping] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [pWidth, setPWidth] = useState(0);
   const [showSubtitles, setShowSubtitles] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [volume, setVolume] = useState(1);
+  const [volume, setVolume] = useState(0.5);
 
   const handlePlayPause = () => {
     if (isPlaying) {
@@ -40,10 +42,21 @@ const Hero = (props) => {
   const handleProgress = () => {
     const duration = videoRef.current.duration;
     const currentTime = videoRef.current.currentTime;
-    const progress = (currentTime / duration) * 100;
-    setProgress(progress);
-    let b = currentTime.toFixed(2);
-    setPlaybackRate(b);
+    const prog = (currentTime / duration) * 100;
+    setProgress(prog);
+
+    let remain = (duration - currentTime).toFixed(2);
+    setRemaintime(remain);
+
+    let playtm = currentTime.toFixed(2);
+    setPlaytime(playtm);
+
+    console.log(progress);
+    if (prog === 100) {
+      setProgress('0:00');
+      setPlaytime('0:00');
+      setRemaintime('0:00');
+    }
   };
   const handleSubtitles = () => {
     setShowSubtitles(!showSubtitles);
@@ -76,31 +89,46 @@ const Hero = (props) => {
         <source src={video} type="video/mp4" />
       </video>
 
-      <div className="controls">
+      <div className="controls container">
         <div className="controls__containers">
-          <button onClick={handlePlayPause}>
+          <button
+            onClick={handlePlayPause}
+            className="controls__containers--btn"
+          >
             {isPlaying ? <FaPause /> : <FaPlay />}
           </button>
 
-          <button onClick={handleLoop}>
+          <button onClick={handleLoop} className="controls__containers--btn">
             {isLooping ? <FaReply /> : <FaReply color="#999" />}
           </button>
         </div>
 
         <div className="controls__slideBar">
-          <input
-            type="range"
-            min="1"
-            max="100"
-            step="0.01"
-            value={progress}
-            onChange={handleProgress}
-          />
-          <span>{playbackRate}</span>
+          <div className="controls__inputWrapper">
+            <input
+              className="controls__input"
+              type="range"
+              min="1"
+              max="100"
+              step="0.01"
+              value={progress}
+              onChange={handleProgress}
+            />
+            <div
+              className="controls__input--overlay"
+              style={{ width: progress }}
+            ></div>
+          </div>
+          <span className="controls__containers--btn">
+            {playtime}/{remaintime}
+          </span>
         </div>
 
         <div className="controls__containers">
-          <button onClick={handleSubtitles}>
+          <button
+            onClick={handleSubtitles}
+            className="controls__containers--btn"
+          >
             {showSubtitles ? (
               <FaClosedCaptioning />
             ) : (
@@ -108,12 +136,15 @@ const Hero = (props) => {
             )}
           </button>
 
-          <button onClick={handleFullScreen}>
+          <button
+            onClick={handleFullScreen}
+            className="controls__containers--btn"
+          >
             {isFullScreen ? <FaCompress /> : <FaExpand />}
           </button>
 
           <button
-            className="volumeBtn"
+            className="volumeBtn controls__containers--btn"
             onClick={() => {
               let a = document.querySelector('.volume');
               if (a.hasAttribute('id')) {
@@ -125,10 +156,12 @@ const Hero = (props) => {
           >
             <div className="volume" id="volume">
               <input
+                className="volume__input"
                 type="range"
                 min="0"
                 max="1"
                 step="0.01"
+                orient="vertical"
                 value={volume}
                 onChange={handleVolumeChange}
               />

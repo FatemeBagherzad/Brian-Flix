@@ -2,7 +2,6 @@ import '../CommentList/CommentList.scss';
 import Comment from '../Comment/Comment';
 
 const CommentList = ({ hero }) => {
-  console.log(hero.comments);
   return (
     <section className="aa">
       {hero.comments.map((comment, index) => (
