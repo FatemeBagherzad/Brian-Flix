@@ -11,10 +11,13 @@ import { useState } from 'react';
 function App() {
   const [videos, setVideos] = useState(data);
   const [hero, setHero] = useState(data[0]);
+  const [progress, setProgress] = useState(0);
+
+  console.log('app', progress);
   return (
     <>
       <Header />
-      <Hero video={hero} />
+      <Hero video={hero} progress={progress} setProgress={setProgress} />
 
       <div className="textContainer container">
         <div className="textContainer__videoDesAndComments">
@@ -30,6 +33,8 @@ function App() {
             setVideos={setVideos}
             setHero={setHero}
             hero={hero}
+            progress={progress}
+            setProgress={setProgress}
           />
         </div>
       </div>

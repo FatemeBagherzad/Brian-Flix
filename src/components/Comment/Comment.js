@@ -10,14 +10,38 @@ import { useState } from 'react';
 
 const Comment = ({ id, name, commentTimestamp, comment, likes }) => {
   //-----------------------
-  //convert time stamp
-  let timestmp = new Date(commentTimestamp);
-  let dateFinalFormat =
-    timestmp.getDate() +
-    '/' +
-    (timestmp.getMonth() + 1) +
-    '/' +
-    timestmp.getFullYear();
+  //comment date in Time Ago Format
+  const nowDateinSec = Date.now() / 1000;
+  const commentTimeStamp = commentTimestamp / 1000;
+  const longAgoTimeStamp = nowDateinSec - commentTimeStamp;
+
+  const timeAgo = () => {
+    if (longAgoTimeStamp / 31536000 >= 1) {
+      return `${Math.ceil(longAgoTimeStamp / 31536000)} years ago`;
+    } else if (longAgoTimeStamp / 2592000 >= 1) {
+      return `${Math.ceil(longAgoTimeStamp / 2592000)} month ago`;
+    } else if (longAgoTimeStamp / 604800 >= 1) {
+      return `${Math.ceil(longAgoTimeStamp / 604800)} weeks ago`;
+    } else if (longAgoTimeStamp / 86400 >= 1) {
+      return `${Math.ceil(longAgoTimeStamp / 86400)} days ago`;
+    } else if (longAgoTimeStamp / 3600 >= 1) {
+      return `${Math.ceil(longAgoTimeStamp / 3600)} hours ago`;
+    } else if (longAgoTimeStamp / 60 >= 1) {
+      return `${Math.ceil(longAgoTimeStamp / 60)} minutes ago`;
+    } else {
+      return `just now`;
+    }
+  };
+
+  //-------------------------------------------------
+  //comment date in dd/mm/yyy format
+  // let timestmp = new Date(commentTimestamp);
+  // let dateFinalFormat =
+  //   timestmp.getDate() +
+  //   '/' +
+  //   (timestmp.getMonth() + 1) +
+  //   '/' +
+  //   timestmp.getFullYear();
   //---------------------------------
   //function for comment side menu
   const [isActive, setActive] = useState('false');
@@ -37,7 +61,7 @@ const Comment = ({ id, name, commentTimestamp, comment, likes }) => {
                 {name}
               </span>
               <span className="comment__TxtWrapper--userInfo-date">
-                {dateFinalFormat}
+                {timeAgo()}
               </span>
             </div>
             <p className="comment__TxtWrapper--p">{comment}</p>

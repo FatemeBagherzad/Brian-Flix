@@ -10,20 +10,19 @@ import {
   FaReply,
 } from 'react-icons/fa';
 
-import video from '../../assets/video/stream.mp4';
 import './Hero.scss';
 
-const Hero = (props) => {
+const Hero = ({ video, progress, setProgress }) => {
+  const videoOnhero = document.querySelector('.hero__video');
   const videoContainerRef = useRef(null);
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [playtime, setPlaytime] = useState('0:00');
-  const [remaintime, setRemaintime] = useState('0:00');
+  const [playtime, setPlaytime] = useState(0);
+  const [remaintime, setRemaintime] = useState(0);
   const [isLooping, setIsLooping] = useState(false);
-  const [progress, setProgress] = useState(0);
   const [showSubtitles, setShowSubtitles] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [volume, setVolume] = useState(1);
+  const [volume, setVolume] = useState(0);
 
   const handlePlayPause = () => {
     if (isPlaying) {
@@ -41,6 +40,11 @@ const Hero = (props) => {
   const handleProgress = () => {
     videoRef.current.volume = volume;
     setProgress(0);
+    if (videoRef.current.currentTime === 0) {
+      setProgress(0);
+      setPlaytime(0);
+      setRemaintime(0);
+    }
 
     const duration = videoRef.current.duration;
     const currentTime = videoRef.current.currentTime;
@@ -56,9 +60,14 @@ const Hero = (props) => {
 
     if (progress > 98) {
       setProgress(0);
-      setPlaytime('0:00');
-      setRemaintime('0:00');
+      setPlaytime(0);
+      setRemaintime(0);
     }
+
+    videoOnhero.onended = function () {
+      console.log('ended');
+      videoOnhero.load();
+    };
   };
   const handleSubtitles = () => {
     setShowSubtitles(!showSubtitles);
@@ -76,6 +85,10 @@ const Hero = (props) => {
     setVolume(event.target.value);
     videoRef.current.volume = event.target.value;
   };
+  const makeCurrentTimeZero = () => {
+    setProgress(0);
+  };
+  console.log('hero', progress);
 
   // --------------------------------------------
   return (
@@ -85,12 +98,16 @@ const Hero = (props) => {
         onTimeUpdate={handleProgress}
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
-        poster={props.video.image}
+        poster={video.image}
         className="hero__video"
+        preload="auto"
+        onLoad={makeCurrentTimeZero}
       >
-        <source src={video} type="video/mp4" />
+        <source
+          src={`${video.videoUrl}?api_key=BrainFlixVideoSrc`}
+          type="video/mp4"
+        />
       </video>
-
       <div className="controls container">
         <div className="controls__containers">
           <button
@@ -113,7 +130,7 @@ const Hero = (props) => {
               min="1"
               max="100"
               step="0.01"
-              value={progress}
+              value={Number(progress)}
               onChange={handleProgress}
             />
             <div

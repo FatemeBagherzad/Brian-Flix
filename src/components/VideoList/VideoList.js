@@ -1,8 +1,17 @@
 import Video from '../Video/Video';
 import '../VideoList/VideoList.scss';
 
-const VideoList = ({ videos, setVideos, setHero, hero }) => {
+const VideoList = ({
+  videos,
+  setVideos,
+  setHero,
+  hero,
+  progress,
+  setProgress,
+}) => {
   const allVideosButHero = videos.filter((obj) => obj.id !== hero.id);
+  console.log('videolist', progress);
+
   return (
     <section className="videoList">
       {allVideosButHero.map((video, index) => (
@@ -16,6 +25,8 @@ const VideoList = ({ videos, setVideos, setHero, hero }) => {
           videos={allVideosButHero}
           setHero={setHero}
           hero={hero}
+          progress={progress}
+          setProgress={setProgress}
         />
       ))}
     </section>

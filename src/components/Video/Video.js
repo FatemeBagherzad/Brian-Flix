@@ -10,9 +10,13 @@ const Video = ({
   setVideos,
   setHero,
   hero,
+  progress,
+  setProgress,
 }) => {
   const updateVideoList = () => {
-    console.log(hero);
+    setProgress(0);
+    let a = document.querySelector('video');
+    a.load();
     let clickedId = id;
     const filterDt = videos.filter((obj) => obj.id !== clickedId);
     filterDt.push(hero);
@@ -20,6 +24,7 @@ const Video = ({
     let newHero = videos.filter((obj) => obj.id === clickedId)[0];
     setHero(newHero);
   };
+  console.log('video', progress);
 
   return (
     <div
