@@ -13,7 +13,6 @@ function App() {
   const [hero, setHero] = useState(data[0]);
   const [progress, setProgress] = useState(0);
 
-  console.log('app', progress);
   return (
     <>
       <Header />

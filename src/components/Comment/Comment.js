@@ -70,24 +70,36 @@ const Comment = ({ id, name, commentTimestamp, comment, likes }) => {
 
         <span className="comment__likeCounter">
           <span className="comment__likeCounter-heart">
-            <img src={likeIcon} />
+            <img src={likeIcon} alt="Like Icon" />
           </span>
           <span>{likes}</span>
         </span>
 
         <div className="comment__commentIcons">
           <div className="comment__commentIcons-wrapper">
-            <img src={commentIcon} className="comment__commentIcons-icon" />
+            <img
+              src={commentIcon}
+              className="comment__commentIcons-icon"
+              alt="Comment Icon"
+            />
             <span>Comment</span>
           </div>
 
           <div className="comment__commentIcons-wrapper" id="repostm">
-            <img src={repostIcon} className="comment__commentIcons-icon" />
+            <img
+              src={repostIcon}
+              className="comment__commentIcons-icon"
+              alt="Repost Icon"
+            />
             <span>Repost</span>
           </div>
 
           <div className="comment__commentIcons-wrapper like">
-            <img src={likethumbIcon} className="comment__commentIcons-icon" />
+            <img
+              src={likethumbIcon}
+              className="comment__commentIcons-icon"
+              alt="Thums Up Icon"
+            />
             <span>Like</span>
           </div>
 
@@ -96,23 +108,39 @@ const Comment = ({ id, name, commentTimestamp, comment, likes }) => {
             id="dropUp"
             onClick={openCommentMenu}
           >
-            <img src={moreIcon} className="comment__commentIcons-icon" />
+            <img
+              src={moreIcon}
+              className="comment__commentIcons-icon"
+              alt="More Icon"
+            />
           </div>
         </div>
 
         {/* drop Up menu fpr comments */}
         <div id={isActive ? 'actOnComment' : null}>
           <div className="comment__more ">
-            <a className="comment__more-item">
-              <img src={deleteIcon} className="comment__commentIcons-icon" />
+            <a className="comment__more-item" href="#">
+              <img
+                src={deleteIcon}
+                className="comment__commentIcons-icon"
+                alt="Delete Icon"
+              />
               <span> Delete post </span>
             </a>
-            <a className="comment__more-item">
-              <img src={editIcon} className="comment__commentIcons-icon" />
+            <a className="comment__more-item" href="#">
+              <img
+                src={editIcon}
+                className="comment__commentIcons-icon"
+                alt="Edit Icon"
+              />
               <span>Edit post</span>
             </a>
-            <a className="comment__more-item" id="repost">
-              <img src={repostIcon} className="comment__commentIcons-icon" />
+            <a className="comment__more-item" id="repost" href="#">
+              <img
+                src={repostIcon}
+                className="comment__commentIcons-icon"
+                alt="Repost Icon"
+              />
               <span>Repost</span>
             </a>
           </div>

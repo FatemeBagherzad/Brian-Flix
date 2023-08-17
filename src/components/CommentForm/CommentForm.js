@@ -25,6 +25,7 @@ const CommentForm = () => {
               <img
                 src={addCommentIcon}
                 className="formSection__form--btn-icon"
+                alt="Plus Icon"
               />
               COMMENT
             </button>

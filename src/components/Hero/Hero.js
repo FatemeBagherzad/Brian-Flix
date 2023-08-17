@@ -58,7 +58,7 @@ const Hero = ({ video, progress, setProgress }) => {
     let playtm = currentTime.toFixed(2);
     setPlaytime(playtm);
 
-    if (progress > 98) {
+    if (progress >= 100) {
       setProgress(0);
       setPlaytime(0);
       setRemaintime(0);
@@ -86,9 +86,8 @@ const Hero = ({ video, progress, setProgress }) => {
     videoRef.current.volume = event.target.value;
   };
   const makeCurrentTimeZero = () => {
-    setProgress(0);
+    videoRef.current.currentTime = 0;
   };
-  console.log('hero', progress);
 
   // --------------------------------------------
   return (
@@ -130,7 +129,7 @@ const Hero = ({ video, progress, setProgress }) => {
               min="1"
               max="100"
               step="0.01"
-              value={Number(progress)}
+              value={progress}
               onChange={handleProgress}
             />
             <div

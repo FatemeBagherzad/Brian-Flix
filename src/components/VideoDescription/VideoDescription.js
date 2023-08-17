@@ -23,13 +23,14 @@ const VideoDescription = ({ hero }) => {
             </span>
             <span className="VideoDes__info-left-item">{dateFinalFormat}</span>
           </div>
+
           <div className="VideoDes__info-right">
             <span className="VideoDes__info-right-item">
-              <img src={viewsIcon} />
+              <img src={viewsIcon} alt="View Icon" />
               {hero.views}
             </span>
             <span className="VideoDes__info-right-item">
-              <img src={likeIcon} />
+              <img src={likeIcon} alt="Like Icon" />
               {hero.likes}
             </span>
           </div>

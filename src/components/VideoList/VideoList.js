@@ -10,7 +10,6 @@ const VideoList = ({
   setProgress,
 }) => {
   const allVideosButHero = videos.filter((obj) => obj.id !== hero.id);
-  console.log('videolist', progress);
 
   return (
     <section className="videoList">

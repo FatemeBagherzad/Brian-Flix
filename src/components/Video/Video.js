@@ -24,7 +24,6 @@ const Video = ({
     let newHero = videos.filter((obj) => obj.id === clickedId)[0];
     setHero(newHero);
   };
-  console.log('video', progress);
 
   return (
     <div

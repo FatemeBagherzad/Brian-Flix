@@ -8,12 +8,16 @@ const Header = () => {
   return (
     <div className="container">
       <div className="nav">
-        <a href="">
-          <img src={logo} className="nav__logo" />
+        <a href="../../index.html">
+          <img src={logo} className="nav__logo" alt="Brain Flix Logo" />
         </a>
         <div className="nav__right">
           <div className="nav__right--searchWrapper">
-            <img src={searchIcon} className="nav__right--searchWrapper-icon" />
+            <img
+              src={searchIcon}
+              className="nav__right--searchWrapper-icon"
+              alt="Search Icon"
+            />
             <input
               icon="search"
               placeholder="Search..."
@@ -21,10 +25,14 @@ const Header = () => {
             />
           </div>
           <button className="nav__right--uploadBtn">
-            <img src={uploadIcon} className="nav__right--uploadBtn-icon" />
+            <img
+              src={uploadIcon}
+              className="nav__right--uploadBtn-icon"
+              alt="Upload Icon"
+            />
             UPLOAD
           </button>
-          <img src={user} className="nav__right--userImg" />
+          <img src={user} className="nav__right--userImg" alt="Person" />
         </div>
       </div>
     </div>
