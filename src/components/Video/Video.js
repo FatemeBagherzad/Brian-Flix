@@ -14,15 +14,17 @@ const Video = ({
   setProgress,
 }) => {
   const updateVideoList = () => {
-    setProgress(0);
     let a = document.querySelector('video');
+    console.log(a);
     a.load();
     let clickedId = id;
     const filterDt = videos.filter((obj) => obj.id !== clickedId);
     filterDt.push(hero);
     setVideos(filterDt);
     let newHero = videos.filter((obj) => obj.id === clickedId)[0];
+    console.log(newHero);
     setHero(newHero);
+    setProgress(0);
   };
 
   return (

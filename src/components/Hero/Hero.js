@@ -13,9 +13,9 @@ import {
 import './Hero.scss';
 
 const Hero = ({ video, progress, setProgress }) => {
-  const videoOnhero = document.querySelector('.hero__video');
+  // const videoOnhero = document.querySelector('.hero__video');
   const videoContainerRef = useRef(null);
-  const videoRef = useRef(null);
+  const videoRef = useRef(video.videoUrl);
   const [isPlaying, setIsPlaying] = useState(false);
   const [playtime, setPlaytime] = useState(0);
   const [remaintime, setRemaintime] = useState(0);
@@ -64,10 +64,10 @@ const Hero = ({ video, progress, setProgress }) => {
       setRemaintime(0);
     }
 
-    videoOnhero.onended = function () {
-      console.log('ended');
-      videoOnhero.load();
-    };
+    // videoOnhero.onended = function () {
+    //   console.log('ended');
+    //   videoOnhero.load();
+    // };
   };
   const handleSubtitles = () => {
     setShowSubtitles(!showSubtitles);
@@ -86,7 +86,8 @@ const Hero = ({ video, progress, setProgress }) => {
     videoRef.current.volume = event.target.value;
   };
   const makeCurrentTimeZero = () => {
-    videoRef.current.currentTime = 0;
+        videoRef.current.currentTime = 0;
+    console.log(videoRef.current);
   };
 
   // --------------------------------------------
@@ -107,6 +108,7 @@ const Hero = ({ video, progress, setProgress }) => {
           type="video/mp4"
         />
       </video>
+
       <div className="controls container">
         <div className="controls__containers">
           <button
@@ -126,7 +128,7 @@ const Hero = ({ video, progress, setProgress }) => {
             <input
               className="controls__input"
               type="range"
-              min="1"
+              min="0"
               max="100"
               step="0.01"
               value={progress}
