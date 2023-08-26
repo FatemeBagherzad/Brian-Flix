@@ -1,42 +1,15 @@
 import '../Video/Video.scss';
-import { useState } from 'react';
 
-const Video = ({
-  id,
-  image,
-  title,
-  channel,
-  videos,
-  setVideos,
-  setHero,
-  hero,
-  progress,
-  setProgress,
-}) => {
-  const updateVideoList = () => {
-    let a = document.querySelector('video');
-    console.log(a);
-    a.load();
-    let clickedId = id;
-    const filterDt = videos.filter((obj) => obj.id !== clickedId);
-    filterDt.push(hero);
-    setVideos(filterDt);
-    let newHero = videos.filter((obj) => obj.id === clickedId)[0];
-    console.log(newHero);
-    setHero(newHero);
-    setProgress(0);
-  };
-
+const Video = ({ id, image, title, channel, updateVideoList }) => {
   return (
-    <div
-      className="video"
-      id={id}
-      onClick={() => {
-        updateVideoList();
-      }}
-    >
+    <div className="video">
       <div>
-        <img src={image} className="video__img" />
+        <img
+          src={image}
+          className="video__img"
+          id={id}
+          onClick={updateVideoList}
+        />
       </div>
       <div className="video__txtCont">
         <p className="video__txtCont-header">{title}</p>

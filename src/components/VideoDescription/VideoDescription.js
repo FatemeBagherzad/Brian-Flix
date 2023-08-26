@@ -2,8 +2,8 @@ import './VideoDescription.scss';
 import viewsIcon from '../../assets/icons/views.svg';
 import likeIcon from '../../assets/icons/likes.svg';
 
-const VideoDescription = ({ hero }) => {
-  let timestmp = new Date(hero.timestamp);
+const VideoDescription = ({ currentVideo }) => {
+  let timestmp = new Date(currentVideo.timestamp);
   let dateFinalFormat =
     timestmp.getDate() +
     '/' +
@@ -14,12 +14,12 @@ const VideoDescription = ({ hero }) => {
   return (
     <>
       <div className="VideoDes">
-        <h1 className="VideoDes__title">{hero.title}</h1>
+        <h1 className="VideoDes__title">{currentVideo.title}</h1>
 
         <div className="VideoDes__info">
           <div className="VideoDes__info-left">
             <span className="VideoDes__info-left-item VideoDes__info-left-item-channel">
-              By {hero.channel}
+              By {currentVideo.channel}
             </span>
             <span className="VideoDes__info-left-item">{dateFinalFormat}</span>
           </div>
@@ -27,16 +27,16 @@ const VideoDescription = ({ hero }) => {
           <div className="VideoDes__info-right">
             <span className="VideoDes__info-right-item">
               <img src={viewsIcon} alt="View Icon" />
-              {hero.views}
+              {currentVideo.views}
             </span>
             <span className="VideoDes__info-right-item">
               <img src={likeIcon} alt="Like Icon" />
-              {hero.likes}
+              {currentVideo.likes}
             </span>
           </div>
         </div>
         <hr />
-        <p className="VideoDes__description">{hero.description}</p>
+        <p className="VideoDes__description">{currentVideo.description}</p>
       </div>
     </>
   );

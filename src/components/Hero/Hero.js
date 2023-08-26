@@ -12,10 +12,9 @@ import {
 
 import './Hero.scss';
 
-const Hero = ({ video, progress, setProgress }) => {
-  // const videoOnhero = document.querySelector('.hero__video');
+const Hero = ({ currentVideo, progress, setProgress }) => {
   const videoContainerRef = useRef(null);
-  const videoRef = useRef(video.videoUrl);
+  const videoRef = useRef(currentVideo.videoUrl);
   const [isPlaying, setIsPlaying] = useState(false);
   const [playtime, setPlaytime] = useState(0);
   const [remaintime, setRemaintime] = useState(0);
@@ -86,7 +85,7 @@ const Hero = ({ video, progress, setProgress }) => {
     videoRef.current.volume = event.target.value;
   };
   const makeCurrentTimeZero = () => {
-        videoRef.current.currentTime = 0;
+    videoRef.current.currentTime = 0;
     console.log(videoRef.current);
   };
 
@@ -98,13 +97,13 @@ const Hero = ({ video, progress, setProgress }) => {
         onTimeUpdate={handleProgress}
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
-        poster={video.image}
+        poster={currentVideo.image}
         className="hero__video"
         preload="auto"
         onLoad={makeCurrentTimeZero}
       >
         <source
-          src={`${video.videoUrl}?api_key=BrainFlixVideoSrc`}
+          src={`${currentVideo.videoUrl}?api_key=BrainFlixVideoSrc`}
           type="video/mp4"
         />
       </video>

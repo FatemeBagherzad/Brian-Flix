@@ -3,31 +3,33 @@ import '../VideoList/VideoList.scss';
 
 const VideoList = ({
   videos,
-  setVideos,
-  setHero,
-  hero,
+
+  currentVideo,
   progress,
   setProgress,
+  updateVideoList,
 }) => {
-  const allVideosButHero = videos.filter((obj) => obj.id !== hero.id);
+  const allVideosButCurrent = videos.filter(
+    (obj) => obj.id !== currentVideo.id
+  );
 
   return (
     <section className="videoList">
-      {allVideosButHero.map((video, index) => (
-        <Video
-          key={index}
-          id={video.id}
-          title={video.title}
-          channel={video.channel}
-          image={video.image}
-          setVideos={setVideos}
-          videos={allVideosButHero}
-          setHero={setHero}
-          hero={hero}
-          progress={progress}
-          setProgress={setProgress}
-        />
-      ))}
+      {allVideosButCurrent &&
+        allVideosButCurrent.map((video, index) => (
+          <Video
+            key={index}
+            id={video.id}
+            title={video.title}
+            channel={video.channel}
+            image={video.image}
+            allVideosButCurrent={allVideosButCurrent}
+            currentVideo={currentVideo}
+            progress={progress}
+            setProgress={setProgress}
+            updateVideoList={updateVideoList}
+          />
+        ))}
     </section>
   );
 };

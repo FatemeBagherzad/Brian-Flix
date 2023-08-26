@@ -6,7 +6,7 @@
 .textContainer {
   display: flex;
   flex-direction: column;
-  margin-top: 3.4rem;
+  margin-top: 3.4rem !important;
   @include desktop {
     flex-direction: row;
     gap: 2.4rem;
