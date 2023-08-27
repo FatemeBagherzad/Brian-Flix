@@ -1,14 +1,22 @@
+import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo/BrainFlix-logo.svg';
 import searchIcon from '../../assets/icons/search.svg';
 import uploadIcon from '../../assets/icons/upload.svg';
 import user from '../../assets/images/Mohan-muruge.jpg';
+import Home from '../../pages/Home/Home';
 import './Header.scss';
 
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="container">
       <div className="nav">
-        <a href="../../index.html">
+        <a
+          onClick={() => {
+            navigate('/');
+          }}
+        >
           <img src={logo} className="nav__logo" alt="Brain Flix Logo" />
         </a>
         <div className="nav__right">
@@ -24,7 +32,12 @@ const Header = () => {
               className="nav__right--searchWrapper-input"
             />
           </div>
-          <button className="nav__right--uploadBtn">
+          <button
+            className="nav__right--uploadBtn"
+            onClick={() => {
+              navigate('upload');
+            }}
+          >
             <img
               src={uploadIcon}
               className="nav__right--uploadBtn-icon"

@@ -1,19 +1,22 @@
 import '../Video/Video.scss';
+import { useParams } from 'react-router-dom';
 
-const Video = ({ id, image, title, channel, updateVideoList }) => {
+const Video = ({ video, updateVideoList }) => {
+  const { videoId } = useParams();
+  // const selectedvideo = images.find((image) => image.id === imageId);
   return (
     <div className="video">
       <div>
         <img
-          src={image}
+          src={video.image}
           className="video__img"
-          id={id}
+          id={video.id}
           onClick={updateVideoList}
         />
       </div>
       <div className="video__txtCont">
-        <p className="video__txtCont-header">{title}</p>
-        <p className="video__txtCont-p">{channel}</p>
+        <p className="video__txtCont-header">{video.title}</p>
+        <p className="video__txtCont-p">{video.channel}</p>
       </div>
     </div>
   );

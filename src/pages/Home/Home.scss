@@ -1,7 +1,7 @@
-@use './partials/fonts' as *;
-@use './partials/mixins' as *;
-@use './partials/variables' as *;
-@use './partials/globals' as *;
+@use '../../styles/partials/fonts' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/globals' as *;
 
 .textContainer {
   display: flex;
