@@ -69,66 +69,102 @@ hr {
   }
 }
 
-.nav {
+.uploadSection {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  gap: 3rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+@media screen and (min-width: 1280px) {
+  .uploadSection {
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr;
+  }
+}
+.uploadSection__header {
+  font-size: 2.4rem;
+  line-height: 1.2;
+  font-weight: 700;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+@media screen and (min-width: 1280px) {
+  .uploadSection__header {
+    font-size: 3.3rem;
+  }
+}
+.uploadSection__thumbnail {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1.6rem;
-  padding: 1.6rem 0;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+.uploadSection__thumbnail--txt {
+  color: #afafaf;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.uploadSection__thumbnail--img {
+  border-radius: 5px;
+  max-width: 90vw;
 }
 @media screen and (min-width: 768px) {
-  .nav {
-    flex-direction: row;
-    justify-content: space-between;
+  .uploadSection__thumbnail--img {
+    width: 50rem;
   }
 }
-.nav__logo {
-  height: 25px;
-}
-.nav__right {
-  display: grid;
-  grid-template-areas: "search search search search search search search search search user" "upload upload upload upload upload upload upload upload upload upload";
-  width: 100%;
-  position: relative;
-}
-@media screen and (min-width: 768px) {
-  .nav__right {
-    display: flex;
-    align-items: center;
-    width: auto;
-    gap: 1.6rem;
-  }
-}
-.nav__right--searchWrapper {
-  grid-area: search;
+.uploadSection__form {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  font-size: 1rem;
 }
-.nav__right--searchWrapper-icon {
-  height: 2rem;
-  position: absolute;
-  left: 1rem;
+@media screen and (min-width: 768px) {
+  .uploadSection__form {
+    font-size: 1.2rem;
+  }
 }
-.nav__right--searchWrapper-input {
-  height: 4rem;
-  padding: 1rem 4rem;
+.uploadSection__form--label {
+  color: #afafaf;
+  font-weight: 600;
+  letter-spacing: 1.5;
+}
+.uploadSection__form--input {
+  padding: 1rem;
   width: 100%;
   background-color: #fafafa;
   border: 1px solid #e1e1e1;
   border-radius: 4px;
   outline: none;
 }
-.nav__right--searchWrapper-input:focus {
+.uploadSection__form--input:focus {
   border: 2px solid #0095ff;
 }
+.uploadSection__form--title {
+  margin-bottom: 2rem;
+}
+.uploadSection__form--textarea {
+  height: 100%;
+  font-family: inherit;
+}
+.uploadSection__btnWrapper {
+  display: flex;
+  gap: 1rem;
+  grid-column: 2;
+  flex-direction: column-reverse;
+  margin-top: 2rem;
+  justify-content: flex-end;
+}
 @media screen and (min-width: 768px) {
-  .nav__right--searchWrapper-input {
-    min-width: 20rem;
+  .uploadSection__btnWrapper {
+    flex-direction: row;
   }
 }
-.nav__right--uploadBtn {
-  grid-area: upload;
+.uploadSection__uploadBtn {
   height: 4rem;
   width: 100%;
   font-size: 1rem;
@@ -143,24 +179,32 @@ hr {
   margin-top: 1.6rem;
   position: relative;
 }
-.nav__right--uploadBtn:hover {
+.uploadSection__uploadBtn:hover {
   cursor: pointer;
   background-color: #0065ad;
 }
-.nav__right--uploadBtn-icon {
+.uploadSection__uploadBtn-icon {
   position: absolute;
   left: 0.5rem;
 }
 @media screen and (min-width: 768px) {
-  .nav__right--uploadBtn {
-    margin: 0;
+  .uploadSection__uploadBtn {
     width: 15rem;
   }
 }
-.nav__right--userImg {
-  grid-area: user;
-  width: 4rem;
-  height: 4rem;
-  border-radius: 50%;
-  justify-self: end;
+.uploadSection__devider {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .uploadSection__devider {
+    display: block;
+  }
+}
+.uploadSection__devider-long {
+  margin: 0;
+}
+
+#cancel {
+  background-color: #ffffff;
+  color: #0095ff;
 }

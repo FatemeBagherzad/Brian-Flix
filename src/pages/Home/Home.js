@@ -26,6 +26,7 @@ function App() {
   }, [currentVideoID]);
 
   const updateVideoList = (e) => {
+    window.scroll({ top: 0 });
     let clickedId = e.target.id;
     console.log(clickedId);
     setCurrentVideoID(clickedId);

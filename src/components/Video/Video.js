@@ -2,8 +2,8 @@ import '../Video/Video.scss';
 import { useParams } from 'react-router-dom';
 
 const Video = ({ video, updateVideoList }) => {
-  const { videoId } = useParams();
-  // const selectedvideo = images.find((image) => image.id === imageId);
+  // const { videoId } = useParams();
+  // const selectedvideo = videos.find((video) => video.id === videoId);
   return (
     <div className="video">
       <div>

@@ -1,0 +1,130 @@
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/globals' as *;
+
+.uploadSection {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  gap: 3rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+
+  @include desktop {
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr;
+  }
+
+  &__header {
+    font-size: 2.4rem;
+    line-height: 1.2;
+    font-weight: 700;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+    @include desktop {
+      font-size: 3.3rem;
+    }
+  }
+  &__thumbnail {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    &--txt {
+      color: $label-color;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    &--img {
+      border-radius: 5px;
+      max-width: 90vw;
+      @include tablet {
+        width: 50rem;
+      }
+    }
+  }
+  &__form {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    font-size: 1rem;
+    @include tablet {
+      font-size: 1.2rem;
+    }
+    &--label {
+      color: $label-color;
+      font-weight: 600;
+      letter-spacing: 1.5;
+    }
+    &--input {
+      padding: 1rem;
+      width: 100%;
+      background-color: $form-bg-color;
+      border: 1px solid $divider-color;
+      border-radius: 4px;
+      outline: none;
+      &:focus {
+        border: 2px solid $cta-outline-color;
+      }
+    }
+    &--title {
+      margin-bottom: 2rem;
+    }
+    &--textarea {
+      height: 100%;
+      font-family: inherit;
+    }
+  }
+  &__btnWrapper {
+    display: flex;
+    gap: 1rem;
+    grid-column: 2;
+    flex-direction: column-reverse;
+    margin-top: 2rem;
+    justify-content: flex-end;
+    @include tablet {
+      flex-direction: row;
+    }
+  }
+  &__uploadBtn {
+    height: 4rem;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 700;
+    color: $bg-color;
+    background-color: $cta-outline-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 4px;
+    margin-top: 1.6rem;
+    position: relative;
+    &:hover {
+      cursor: pointer;
+      background-color: $CTA-hov-color;
+    }
+    &-icon {
+      position: absolute;
+      left: 0.5rem;
+    }
+    @include tablet {
+      width: 15rem;
+    }
+  }
+  &__devider {
+    display: none;
+    @include tablet {
+      display: block;
+    }
+    &-long {
+      margin: 0;
+    }
+  }
+}
+#cancel {
+  background-color: $bg-color;
+  color: $cta-outline-color;
+}
