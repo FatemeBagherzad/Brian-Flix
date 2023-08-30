@@ -3,7 +3,7 @@ import Comment from '../Comment/Comment';
 
 const CommentList = ({ currentVideo }) => {
   return (
-    <section className="aa">
+    <section>
       {currentVideo.comments &&
         currentVideo.comments.map((comment, index) => (
           <Comment

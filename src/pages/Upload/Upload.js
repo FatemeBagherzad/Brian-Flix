@@ -2,6 +2,7 @@ import Header from '../../components/Header/Header';
 import bikeingThumbnail from '../../assets/images/Upload-video-preview.jpg';
 import publishIcon from '../../assets/icons/publish.svg';
 import './Upload.scss';
+
 const Upload = () => {
   return (
     <>

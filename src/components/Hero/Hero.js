@@ -9,19 +9,18 @@ import {
   FaVolumeMute,
   FaReply,
 } from 'react-icons/fa';
-
 import './Hero.scss';
 
 const Hero = ({ currentVideo, progress, setProgress }) => {
   const videoContainerRef = useRef(null);
-  const videoRef = useRef(currentVideo.videoUrl);
+  const videoRef = useRef();
   const [isPlaying, setIsPlaying] = useState(false);
   const [playtime, setPlaytime] = useState(0);
   const [remaintime, setRemaintime] = useState(0);
   const [isLooping, setIsLooping] = useState(false);
   const [showSubtitles, setShowSubtitles] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [volume, setVolume] = useState(0);
+  const [volume, setVolume] = useState(0.1);
 
   const handlePlayPause = () => {
     if (isPlaying) {
@@ -37,7 +36,6 @@ const Hero = ({ currentVideo, progress, setProgress }) => {
     videoRef.current.loop = !isLooping;
   };
   const handleProgress = () => {
-    videoRef.current.volume = volume;
     setProgress(0);
     if (videoRef.current.currentTime === 0) {
       setProgress(0);
@@ -57,16 +55,13 @@ const Hero = ({ currentVideo, progress, setProgress }) => {
     let playtm = currentTime.toFixed(2);
     setPlaytime(playtm);
 
-    if (progress >= 100) {
+    if (prog >= 100) {
+      videoRef.current.currentTime = 0;
+      console.log(videoRef.current.currentTime);
       setProgress(0);
       setPlaytime(0);
       setRemaintime(0);
     }
-
-    // videoOnhero.onended = function () {
-    //   console.log('ended');
-    //   videoOnhero.load();
-    // };
   };
   const handleSubtitles = () => {
     setShowSubtitles(!showSubtitles);
@@ -84,10 +79,6 @@ const Hero = ({ currentVideo, progress, setProgress }) => {
     setVolume(event.target.value);
     videoRef.current.volume = event.target.value;
   };
-  const makeCurrentTimeZero = () => {
-    videoRef.current.currentTime = 0;
-    console.log(videoRef.current);
-  };
 
   // --------------------------------------------
   return (
@@ -100,10 +91,9 @@ const Hero = ({ currentVideo, progress, setProgress }) => {
         poster={currentVideo.image}
         className="hero__video"
         preload="auto"
-        onLoad={makeCurrentTimeZero}
       >
         <source
-          src={`${currentVideo.videoUrl}?api_key=BrainFlixVideoSrc`}
+          src={`${currentVideo.video}?api_key=BrainFlixVideoSrc`}
           type="video/mp4"
         />
       </video>

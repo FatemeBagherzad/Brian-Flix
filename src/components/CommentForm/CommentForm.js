@@ -3,6 +3,9 @@ import addCommentIcon from '../../assets/icons/add_comment.svg';
 import userImg from '../../assets/images/Mohan-muruge.jpg';
 
 const CommentForm = () => {
+  const commentClickHandler = (event) => {
+    event.preventDefault();
+  };
   return (
     <>
       <span className="formSection__commentsN">3 Comments</span>
@@ -21,7 +24,10 @@ const CommentForm = () => {
               className="formSection__form--textArea"
             ></textarea>
 
-            <button className="formSection__form--btn">
+            <button
+              className="formSection__form--btn"
+              onClick={commentClickHandler}
+            >
               <img
                 src={addCommentIcon}
                 className="formSection__form--btn-icon"
