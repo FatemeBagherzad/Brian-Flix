@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../Comment/Comment.scss';
 import APIService from '../APIService';
@@ -26,6 +26,16 @@ const Comment = ({
   const nowDateinSec = Date.now() / 1000;
   const commentTimeStamp = commentTimestamp / 1000;
   const longAgoTimeStamp = nowDateinSec - commentTimeStamp;
+
+  const openCommentMenu = (e) => {
+    setActive(!isActive);
+    console.log();
+    if (!isActive) {
+      if (!e.target.matches('.actOnComment')) {
+        setActive(!isActive);
+      }
+    }
+  };
 
   const timeAgo = () => {
     if (longAgoTimeStamp / 31536000 >= 1) {
@@ -75,16 +85,6 @@ const Comment = ({
           }
         });
       });
-  };
-
-  const openCommentMenu = (e) => {
-    setActive(!isActive);
-    console.log();
-    if (!isActive) {
-      if (!e.target.matches('.actOnComment')) {
-        setActive(!isActive);
-      }
-    }
   };
 
   return (
@@ -158,7 +158,7 @@ const Comment = ({
         </div>
 
         {/* drop Up menu fpr comments */}
-        <div className={isActive ? 'actOnComment' : null}>
+        <div className={isActive ? 'actOnComment' : null} id="menu">
           <div className="comment__more ">
             <a
               className="comment__more-item"

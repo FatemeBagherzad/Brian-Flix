@@ -1,9 +1,18 @@
+import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import bikeingThumbnail from '../../assets/images/Upload-video-preview.jpg';
 import publishIcon from '../../assets/icons/publish.svg';
 import './Upload.scss';
+import { useState } from 'react';
 
 const Upload = () => {
+  const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeUploadDialog = (e) => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <>
       <Header />
@@ -42,10 +51,39 @@ const Upload = () => {
       <hr className="uploadSection__devider container" />
 
       <div className="uploadSection__btnWrapper container">
+        <div
+          className="uploadSection__btnWrapper--videoUploaded"
+          id={!isOpen ? 'closeUploadBox' : null}
+        >
+          <span>
+            Your video has been <strong>uploaded</strong>.
+          </span>
+
+          <button
+            className="uploadSection__btnWrapper--videoUploaded-btn"
+            onClick={() => {
+              navigate('/');
+            }}
+          >
+            go to home page!
+          </button>
+          <button
+            className="uploadSection__btnWrapper--videoUploaded-btn"
+            onClick={closeUploadDialog}
+          >
+            stay here!
+          </button>
+        </div>
+
         <button className="uploadSection__uploadBtn" id="cancel">
           CANCEL
         </button>
-        <button className="uploadSection__uploadBtn">
+        <button
+          className="uploadSection__uploadBtn"
+          onClick={() => {
+            setIsOpen(true);
+          }}
+        >
           <img
             src={publishIcon}
             className="uploadSection__uploadBtn-icon"
