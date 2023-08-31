@@ -1,4 +1,7 @@
+import { useState } from 'react';
+import axios from 'axios';
 import '../Comment/Comment.scss';
+import APIService from '../APIService';
 import likeIcon from '../../assets/icons/likes.svg';
 import commentIcon from '../../assets/icons/comments2.png';
 import repostIcon from '../../assets/icons/repost.png';
@@ -6,9 +9,18 @@ import likethumbIcon from '../../assets/icons/like2.png';
 import moreIcon from '../../assets/icons/more.png';
 import deleteIcon from '../../assets/icons/delete.png';
 import editIcon from '../../assets/icons/edit.png';
-import { useState } from 'react';
 
-const Comment = ({ id, name, commentTimestamp, comment, likes }) => {
+const Comment = ({
+  id,
+  name,
+  commentTimestamp,
+  comment,
+  likes,
+  currentVideo,
+  setCurrentVideo,
+}) => {
+  const [like, setLikes] = useState(likes);
+  const [isActive, setActive] = useState('false');
   //-----------------------
   //comment date in Time Ago Format
   const nowDateinSec = Date.now() / 1000;
@@ -33,20 +45,46 @@ const Comment = ({ id, name, commentTimestamp, comment, likes }) => {
     }
   };
 
-  //-------------------------------------------------
-  //comment date in dd/mm/yyy format
-  // let timestmp = new Date(commentTimestamp);
-  // let dateFinalFormat =
-  //   timestmp.getDate() +
-  //   '/' +
-  //   (timestmp.getMonth() + 1) +
-  //   '/' +
-  //   timestmp.getFullYear();
-  //---------------------------------
-  //function for comment side menu
-  const [isActive, setActive] = useState('false');
-  const openCommentMenu = () => {
+  //-----------------------
+  const handleLike = () => {
+    // axios
+    //   .put(
+    //     `https://project-1-api.herokuapp.com/comments/${id}/like?api_key=<FatemeBagherzadBrainStationAPI>`
+    //   )
+    //   .then((response) => {
+    //     console.log(response);
+    //     setLikes(like + 1);
+    //   });
+
+    setLikes(like + 1);
+  };
+
+  //------------------------
+  const deleteCommentHandler = (event) => {
+    console.log(event);
+    event.preventDefault();
+    axios
+      .delete(
+        `https://project-2-api.herokuapp.com/videos/${currentVideo.id}/comments/${id}?api_key=4e15e296-a8f6-4d61-bffb-cad423b094d8`
+      )
+      .then(() => {
+        APIService.getVideoById(currentVideo.id).then((response) => {
+          setCurrentVideo(response);
+          if (!isActive) {
+            setActive(!isActive);
+          }
+        });
+      });
+  };
+
+  const openCommentMenu = (e) => {
     setActive(!isActive);
+    console.log();
+    if (!isActive) {
+      if (!e.target.matches('.actOnComment')) {
+        setActive(!isActive);
+      }
+    }
   };
 
   return (
@@ -72,7 +110,7 @@ const Comment = ({ id, name, commentTimestamp, comment, likes }) => {
           <span className="comment__likeCounter-heart">
             <img src={likeIcon} alt="Like Icon" />
           </span>
-          <span>{likes}</span>
+          <span>{like}</span>
         </span>
 
         <div className="comment__commentIcons">
@@ -94,7 +132,10 @@ const Comment = ({ id, name, commentTimestamp, comment, likes }) => {
             <span>Repost</span>
           </div>
 
-          <div className="comment__commentIcons-wrapper like">
+          <div
+            className="comment__commentIcons-wrapper like"
+            onClick={handleLike}
+          >
             <img
               src={likethumbIcon}
               className="comment__commentIcons-icon"
@@ -117,9 +158,13 @@ const Comment = ({ id, name, commentTimestamp, comment, likes }) => {
         </div>
 
         {/* drop Up menu fpr comments */}
-        <div id={isActive ? 'actOnComment' : null}>
+        <div className={isActive ? 'actOnComment' : null}>
           <div className="comment__more ">
-            <a className="comment__more-item" href="#">
+            <a
+              className="comment__more-item"
+              href="#"
+              onClick={deleteCommentHandler}
+            >
               <img
                 src={deleteIcon}
                 className="comment__commentIcons-icon"

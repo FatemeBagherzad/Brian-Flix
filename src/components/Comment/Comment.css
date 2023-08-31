@@ -222,6 +222,6 @@ hr {
   }
 }
 
-#actOnComment {
+.actOnComment {
   display: none;
 }

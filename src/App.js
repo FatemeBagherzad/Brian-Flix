@@ -8,7 +8,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path={'/'} element={<Home />} />
-        <Route path={'upload'} element={<Upload />} />
+        <Route exact path={'/upload'} element={<Upload />} />
         <Route path={'video/:videoId'} element={<Home />} />
         <Route path={'*'} element={<NotFound />} />
       </Routes>

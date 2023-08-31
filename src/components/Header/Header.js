@@ -3,7 +3,6 @@ import logo from '../../assets/logo/BrainFlix-logo.svg';
 import searchIcon from '../../assets/icons/search.svg';
 import uploadIcon from '../../assets/icons/upload.svg';
 import user from '../../assets/images/Mohan-muruge.jpg';
-import Home from '../../pages/Home/Home';
 import './Header.scss';
 
 const Header = () => {
@@ -35,7 +34,7 @@ const Header = () => {
           <button
             className="nav__right--uploadBtn"
             onClick={() => {
-              navigate('upload');
+              navigate('/upload');
             }}
           >
             <img
