@@ -13,7 +13,7 @@ import './Hero.scss';
 
 const Hero = ({ currentVideo, progress, setProgress }) => {
   const videoContainerRef = useRef(null);
-  const videoRef = useRef();
+  const videoRef = useRef(currentVideo.id);
   const [isPlaying, setIsPlaying] = useState(false);
   const [playtime, setPlaytime] = useState(0);
   const [remaintime, setRemaintime] = useState(0);

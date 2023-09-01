@@ -123,6 +123,52 @@ hr {
 .comment__TxtWrapper--userInfo-date {
   color: #afafaf;
 }
+.comment__TxtWrapper--edit {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.comment__TxtWrapper--edit-textarea {
+  width: 100%;
+  height: 12rem;
+  padding: 1rem;
+  background-color: #fafafa;
+  border: 2px solid #e1e1e1;
+  border-radius: 4px;
+  font-family: inherit;
+}
+@media screen and (min-width: 768px) {
+  .comment__TxtWrapper--edit-textarea {
+    padding: 1.6rem;
+    height: 8rem;
+  }
+}
+.comment__TxtWrapper--edit-textarea:hover, .comment__TxtWrapper--edit-textarea:active {
+  border: 2px solid #0095ff;
+}
+.comment__TxtWrapper--edit-btn {
+  align-self: flex-end;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #0095ff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 2rem;
+}
+.comment__TxtWrapper--edit-btn:hover {
+  cursor: pointer;
+  background-color: #0065ad;
+}
+.comment__TxtWrapper--edit-btn-icon {
+  position: absolute;
+  left: 0.5rem;
+}
+@media screen and (min-width: 768px) {
+  .comment__TxtWrapper--edit-btn {
+    width: 15rem;
+  }
+}
 .comment__likeCounter {
   align-self: start;
   margin-top: 2rem;
@@ -223,5 +269,9 @@ hr {
 }
 
 .actOnComment {
+  display: none;
+}
+
+#showEditBox {
   display: none;
 }

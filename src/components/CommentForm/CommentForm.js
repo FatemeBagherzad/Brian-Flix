@@ -2,10 +2,12 @@ import '../CommentForm/CommentForm.scss';
 import addCommentIcon from '../../assets/icons/add_comment.svg';
 import userImg from '../../assets/images/Mohan-muruge.jpg';
 
-const CommentForm = ({ commentSubmitHandler }) => {
+const CommentForm = ({ commentSubmitHandler, currentVideo }) => {
   return (
     <>
-      <span className="formSection__commentsN">Comments</span>
+      <span className="formSection__commentsN">
+        {currentVideo && currentVideo.comments.length}Comments
+      </span>
 
       <form className="formSection" onSubmit={commentSubmitHandler}>
         <img alt="Person Proflie" src={userImg} className="formSection__img" />

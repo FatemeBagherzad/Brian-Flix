@@ -21,6 +21,7 @@ const Comment = ({
 }) => {
   const [like, setLikes] = useState(likes);
   const [isActive, setActive] = useState('false');
+  const [isEdit, setIsEdit] = useState('false');
   //-----------------------
   //comment date in Time Ago Format
   const nowDateinSec = Date.now() / 1000;
@@ -29,12 +30,40 @@ const Comment = ({
 
   const openCommentMenu = (e) => {
     setActive(!isActive);
-    console.log();
     if (!isActive) {
       if (!e.target.matches('.actOnComment')) {
         setActive(!isActive);
       }
     }
+  };
+
+  const postEditedCommentHandler = (event) => {
+    event.preventDefault();
+    axios
+      .delete(
+        `https://project-2-api.herokuapp.com/videos/${currentVideo.id}/comments/${id}?api_key=4e15e296-a8f6-4d61-bffb-cad423b094d8`
+      )
+      .then(() => {
+        axios
+          .post(
+            `https://project-2-api.herokuapp.com/videos/${currentVideo.id}/comments?api_key=4e15e296-a8f6-4d61-bffb-cad423b094d8`,
+            { name: 'user', comment: `${event.target.editComment.value}` }
+          )
+          .then(() => {
+            APIService.getVideoById(currentVideo.id).then((response) => {
+              setCurrentVideo(response);
+            });
+          })
+          .catch((err) => console.log(err));
+      });
+
+    setIsEdit(true);
+  };
+
+  const editPostHandler = (event) => {
+    event.preventDefault();
+    setIsEdit(false);
+    setActive(true);
   };
 
   const timeAgo = () => {
@@ -103,6 +132,21 @@ const Comment = ({
               </span>
             </div>
             <p className="comment__TxtWrapper--p">{comment}</p>
+            <form
+              className="comment__TxtWrapper--edit"
+              id={isEdit ? 'showEditBox' : null}
+              onSubmit={postEditedCommentHandler}
+            >
+              <textarea
+                id="editComment"
+                name="editComment"
+                type="text"
+                placeholder=""
+                defaultValue={comment}
+                className="comment__TxtWrapper--edit-textarea"
+              ></textarea>
+              <button className="comment__TxtWrapper--edit-btn">Edit</button>
+            </form>
           </div>
         </div>
 
@@ -172,7 +216,11 @@ const Comment = ({
               />
               <span> Delete post </span>
             </a>
-            <a className="comment__more-item" href="#">
+            <a
+              className="comment__more-item"
+              href="#"
+              onClick={editPostHandler}
+            >
               <img
                 src={editIcon}
                 className="comment__commentIcons-icon"
