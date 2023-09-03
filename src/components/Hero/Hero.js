@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   FaPlay,
   FaPause,
@@ -11,16 +11,27 @@ import {
 } from 'react-icons/fa';
 import './Hero.scss';
 
-const Hero = ({ currentVideo, progress, setProgress }) => {
+const Hero = ({ currentVideo }) => {
   const videoContainerRef = useRef(null);
   const videoRef = useRef(currentVideo.id);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [volume, setVolume] = useState(0.1);
   const [playtime, setPlaytime] = useState(0);
   const [remaintime, setRemaintime] = useState(0);
   const [isLooping, setIsLooping] = useState(false);
   const [showSubtitles, setShowSubtitles] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [volume, setVolume] = useState(0.1);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [isDraggingSeekBar, setIsDraggingSeekBar] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    videoRef.current.load();
+    videoRef.current.currentTime = 0;
+    setIsPlaying(false);
+    setProgress(0);
+    setRemaintime(0);
+  }, [currentVideo.image]);
 
   const handlePlayPause = () => {
     if (isPlaying) {
@@ -34,6 +45,23 @@ const Hero = ({ currentVideo, progress, setProgress }) => {
   const handleLoop = () => {
     setIsLooping(!isLooping);
     videoRef.current.loop = !isLooping;
+  };
+  const handleSeek = (e) => {
+    const newTime = (e.target.value / 100) * videoRef.current.duration;
+    videoRef.current.currentTime = newTime;
+    setCurrentTime(newTime);
+  };
+  const handleMouseDown = (e) => {
+    const newprog = parseFloat(e.target.value);
+    setCurrentTime(newprog);
+    // setIsDraggingSeekBar(true);
+    videoRef.current.currentTime = newprog;
+  };
+  const handleMouseUp = () => {
+    if (isDraggingSeekBar) {
+      videoRef.current.play(); // Resume video playback if it was paused while dragging.
+      setIsDraggingSeekBar(false);
+    }
   };
   const handleProgress = () => {
     setProgress(0);
@@ -62,6 +90,9 @@ const Hero = ({ currentVideo, progress, setProgress }) => {
       setPlaytime(0);
       setRemaintime(0);
     }
+    if (!isDraggingSeekBar) {
+      setCurrentTime(videoRef.current.currentTime);
+    }
   };
   const handleSubtitles = () => {
     setShowSubtitles(!showSubtitles);
@@ -81,16 +112,20 @@ const Hero = ({ currentVideo, progress, setProgress }) => {
   };
 
   // --------------------------------------------
+
   return (
     <div className="hero container" ref={videoContainerRef}>
       <video
         ref={videoRef}
         onTimeUpdate={handleProgress}
-        onPlay={() => setIsPlaying(true)}
-        onPause={() => setIsPlaying(false)}
+        onEnded={() => {
+          setIsPlaying(false);
+          videoRef.current.load();
+        }}
+        // onPlay={() => setIsPlaying(true)}
+        // onPause={() => setIsPlaying(false)}
         poster={currentVideo.image}
         className="hero__video"
-        preload="auto"
       >
         <source
           src={`${currentVideo.video}?api_key=BrainFlixVideoSrc`}
@@ -119,9 +154,15 @@ const Hero = ({ currentVideo, progress, setProgress }) => {
               type="range"
               min="0"
               max="100"
-              step="0.01"
-              value={progress}
-              onChange={handleProgress}
+              step="1"
+              value={
+                currentTime === 0
+                  ? 0
+                  : (currentTime / videoRef.current.duration) * 100
+              }
+              onChange={handleSeek}
+              onMouseDown={handleMouseDown}
+              onMouseUp={handleMouseUp}
             />
             <div
               className="controls__input--overlay"
@@ -129,7 +170,7 @@ const Hero = ({ currentVideo, progress, setProgress }) => {
             ></div>
           </div>
           <span className="controls__containers--btn">
-            {playtime}/{remaintime}
+            {playtime}/{videoRef.current.duration ? remaintime : '0:00'}
           </span>
         </div>
 

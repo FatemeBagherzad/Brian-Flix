@@ -14,7 +14,6 @@ import CommentForm from '../../components/CommentForm/CommentForm';
 function Home() {
   const [videos, setVideos] = useState('');
   const [currentVideo, setCurrentVideo] = useState('');
-  const [progress, setProgress] = useState(0);
   const { videoId } = useParams();
 
   const commentSubmitHandler = (event) => {
@@ -56,13 +55,7 @@ function Home() {
     <>
       <Header />
 
-      {currentVideo && (
-        <Hero
-          currentVideo={currentVideo}
-          progress={progress}
-          setProgress={setProgress}
-        />
-      )}
+      {currentVideo && <Hero currentVideo={currentVideo} />}
 
       <div className="container textContainer">
         <div className="textContainer__videoDesAndComments">

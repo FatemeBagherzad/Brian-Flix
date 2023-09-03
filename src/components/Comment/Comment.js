@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import axios from 'axios';
 import '../Comment/Comment.scss';
 import APIService from '../APIService';
@@ -21,7 +22,8 @@ const Comment = ({
 }) => {
   const [like, setLikes] = useState(likes);
   const [isActive, setActive] = useState('false');
-  const [isEdit, setIsEdit] = useState('false');
+  const [isEditing, setIsEditing] = useState('false');
+  const [textareaV, setTextareaV] = useState('');
   //-----------------------
   //comment date in Time Ago Format
   const nowDateinSec = Date.now() / 1000;
@@ -30,12 +32,18 @@ const Comment = ({
 
   const openCommentMenu = (e) => {
     setActive(!isActive);
-    if (!isActive) {
-      if (!e.target.matches('.actOnComment')) {
-        setActive(!isActive);
-      }
-    }
+    // if (!isActive) {
+    //   if (!e.target.matches('.actOnComment')) {
+    //     setActive(!isActive);
+    //   }
+    // }
   };
+  // useEffect(() => {
+  //   let handler = () => {
+  //     setActive(false);
+  //   };
+  //   document.addEventListener('mousedown', handler);
+  // });
 
   const postEditedCommentHandler = (event) => {
     event.preventDefault();
@@ -57,12 +65,23 @@ const Comment = ({
           .catch((err) => console.log(err));
       });
 
-    setIsEdit(true);
+    setIsEditing(true);
   };
+
+  document.addEventListener('keydown', function (event) {
+    const key = event.key; // const {key} = event; in ES6+
+    if (key === 'Escape') {
+      setIsEditing(true);
+    }
+    if (key === 'Escape' && isActive) {
+      setActive(true);
+    }
+  });
 
   const editPostHandler = (event) => {
     event.preventDefault();
-    setIsEdit(false);
+    setTextareaV(comment);
+    setIsEditing(false);
     setActive(true);
   };
 
@@ -131,10 +150,15 @@ const Comment = ({
                 {timeAgo()}
               </span>
             </div>
-            <p className="comment__TxtWrapper--p">{comment}</p>
+            <p
+              className="comment__TxtWrapper--p"
+              id={!isEditing ? 'showEditBox' : null}
+            >
+              {comment}
+            </p>
             <form
               className="comment__TxtWrapper--edit"
-              id={isEdit ? 'showEditBox' : null}
+              id={isEditing ? 'showEditBox' : null}
               onSubmit={postEditedCommentHandler}
             >
               <textarea
@@ -142,10 +166,10 @@ const Comment = ({
                 name="editComment"
                 type="text"
                 placeholder=""
-                defaultValue={comment}
+                defaultValue={textareaV}
                 className="comment__TxtWrapper--edit-textarea"
               ></textarea>
-              <button className="comment__TxtWrapper--edit-btn">Edit</button>
+              <button className="comment__TxtWrapper--edit-btn">Save</button>
             </form>
           </div>
         </div>
@@ -202,7 +226,7 @@ const Comment = ({
         </div>
 
         {/* drop Up menu fpr comments */}
-        <div className={isActive ? 'actOnComment' : null} id="menu">
+        <div className={isActive ? 'actOnComment' : null}>
           <div className="comment__more ">
             <a
               className="comment__more-item"
