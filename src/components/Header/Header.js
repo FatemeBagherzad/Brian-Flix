@@ -32,14 +32,14 @@ const Header = () => {
             />
           </div>
           <button
-            className="nav__right--uploadBtn"
+            className="nav__right--uploadBtn btn"
             onClick={() => {
               navigate('/upload');
             }}
           >
             <img
               src={uploadIcon}
-              className="nav__right--uploadBtn-icon"
+              className="nav__right--uploadBtn-icon btn-icon"
               alt="Upload Icon"
             />
             UPLOAD

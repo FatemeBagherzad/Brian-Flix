@@ -69,6 +69,36 @@ hr {
   }
 }
 
+.btn {
+  height: 4rem;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #0095ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 4px;
+  margin-top: 1.6rem;
+  position: relative;
+}
+.btn:hover {
+  cursor: pointer;
+  background-color: #0065ad;
+}
+.btn-icon {
+  position: absolute;
+  left: 0.5rem;
+}
+@media screen and (min-width: 768px) {
+  .btn {
+    margin: 0;
+    width: 15rem;
+  }
+}
+
 .formSection {
   display: flex;
   justify-items: flex-start;
@@ -148,31 +178,19 @@ hr {
   border: 2px solid #0095ff;
 }
 .formSection__form--btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #0095ff;
-  border: none;
-  color: #ffffff;
-  width: 100%;
-  padding: 1.2rem 5rem;
-  border-radius: 4px;
-  font-size: 1rem;
-  position: relative;
+  padding: 1.2rem 5rem !important;
 }
 .formSection__form--btn:hover {
-  cursor: pointer;
-  font-weight: 600;
+  font-weight: 600 !important;
 }
 .formSection__form--btn-icon {
-  position: absolute;
-  left: 1rem;
+  left: 1rem !important;
 }
 @media screen and (min-width: 768px) {
   .formSection__form--btn {
-    font-size: 1.2rem;
-    width: auto;
-    align-self: flex-end;
-    height: 5rem;
+    font-size: 1.2rem !important;
+    width: auto !important;
+    align-self: flex-end !important;
+    height: 5rem !important;
   }
 }

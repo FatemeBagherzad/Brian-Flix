@@ -24,10 +24,10 @@ const CommentForm = ({ commentSubmitHandler, currentVideo }) => {
               className="formSection__form--textArea"
             ></textarea>
 
-            <button className="formSection__form--btn">
+            <button className="formSection__form--btn btn">
               <img
                 src={addCommentIcon}
-                className="formSection__form--btn-icon"
+                className="formSection__form--btn-icon btn-icon"
                 alt="Plus Icon"
               />
               COMMENT

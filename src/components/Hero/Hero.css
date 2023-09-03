@@ -69,6 +69,36 @@ hr {
   }
 }
 
+.btn {
+  height: 4rem;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #0095ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 4px;
+  margin-top: 1.6rem;
+  position: relative;
+}
+.btn:hover {
+  cursor: pointer;
+  background-color: #0065ad;
+}
+.btn-icon {
+  position: absolute;
+  left: 0.5rem;
+}
+@media screen and (min-width: 768px) {
+  .btn {
+    margin: 0;
+    width: 15rem;
+  }
+}
+
 .hero {
   width: 100vw;
   height: 55.5555555556vw;

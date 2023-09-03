@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-
+import { useState } from 'react';
 import axios from 'axios';
 import '../Comment/Comment.scss';
+
 import APIService from '../APIService';
 import likeIcon from '../../assets/icons/likes.svg';
 import commentIcon from '../../assets/icons/comments2.png';
@@ -24,26 +24,39 @@ const Comment = ({
   const [isActive, setActive] = useState('false');
   const [isEditing, setIsEditing] = useState('false');
   const [textareaV, setTextareaV] = useState('');
-  //-----------------------
-  //comment date in Time Ago Format
+  //comment date in Time Ago Format------------
   const nowDateinSec = Date.now() / 1000;
   const commentTimeStamp = commentTimestamp / 1000;
   const longAgoTimeStamp = nowDateinSec - commentTimeStamp;
 
+  const timeAgo = () => {
+    if (longAgoTimeStamp / 31536000 >= 1) {
+      return `${Math.ceil(longAgoTimeStamp / 31536000)} years ago`;
+    } else if (longAgoTimeStamp / 2592000 >= 1) {
+      return `${Math.ceil(longAgoTimeStamp / 2592000)} month ago`;
+    } else if (longAgoTimeStamp / 604800 >= 1) {
+      return `${Math.ceil(longAgoTimeStamp / 604800)} weeks ago`;
+    } else if (longAgoTimeStamp / 86400 >= 1) {
+      return `${Math.ceil(longAgoTimeStamp / 86400)} days ago`;
+    } else if (longAgoTimeStamp / 3600 >= 1) {
+      return `${Math.ceil(longAgoTimeStamp / 3600)} hours ago`;
+    } else if (longAgoTimeStamp / 60 >= 1) {
+      return `${Math.ceil(longAgoTimeStamp / 60)} minutes ago`;
+    } else {
+      return `just now`;
+    }
+  };
+
   const openCommentMenu = (e) => {
     setActive(!isActive);
-    // if (!isActive) {
-    //   if (!e.target.matches('.actOnComment')) {
-    //     setActive(!isActive);
-    //   }
-    // }
   };
-  // useEffect(() => {
-  //   let handler = () => {
-  //     setActive(false);
-  //   };
-  //   document.addEventListener('mousedown', handler);
-  // });
+
+  const editPostHandler = (event) => {
+    event.preventDefault();
+    setTextareaV(comment);
+    setIsEditing(false);
+    setActive(true);
+  };
 
   const postEditedCommentHandler = (event) => {
     event.preventDefault();
@@ -68,8 +81,9 @@ const Comment = ({
     setIsEditing(true);
   };
 
+  //close the input or dropUp menu with Esc---
   document.addEventListener('keydown', function (event) {
-    const key = event.key; // const {key} = event; in ES6+
+    const key = event.key;
     if (key === 'Escape') {
       setIsEditing(true);
     }
@@ -78,32 +92,7 @@ const Comment = ({
     }
   });
 
-  const editPostHandler = (event) => {
-    event.preventDefault();
-    setTextareaV(comment);
-    setIsEditing(false);
-    setActive(true);
-  };
-
-  const timeAgo = () => {
-    if (longAgoTimeStamp / 31536000 >= 1) {
-      return `${Math.ceil(longAgoTimeStamp / 31536000)} years ago`;
-    } else if (longAgoTimeStamp / 2592000 >= 1) {
-      return `${Math.ceil(longAgoTimeStamp / 2592000)} month ago`;
-    } else if (longAgoTimeStamp / 604800 >= 1) {
-      return `${Math.ceil(longAgoTimeStamp / 604800)} weeks ago`;
-    } else if (longAgoTimeStamp / 86400 >= 1) {
-      return `${Math.ceil(longAgoTimeStamp / 86400)} days ago`;
-    } else if (longAgoTimeStamp / 3600 >= 1) {
-      return `${Math.ceil(longAgoTimeStamp / 3600)} hours ago`;
-    } else if (longAgoTimeStamp / 60 >= 1) {
-      return `${Math.ceil(longAgoTimeStamp / 60)} minutes ago`;
-    } else {
-      return `just now`;
-    }
-  };
-
-  //-----------------------
+  //No PUT defined in documentation-----------------------
   const handleLike = () => {
     // axios
     //   .put(
@@ -169,7 +158,9 @@ const Comment = ({
                 defaultValue={textareaV}
                 className="comment__TxtWrapper--edit-textarea"
               ></textarea>
-              <button className="comment__TxtWrapper--edit-btn">Save</button>
+              <button className="comment__TxtWrapper--edit-btn btn">
+                Save
+              </button>
             </form>
           </div>
         </div>
@@ -181,6 +172,7 @@ const Comment = ({
           <span>{like}</span>
         </span>
 
+        {/* action on comments Icons */}
         <div className="comment__commentIcons">
           <div className="comment__commentIcons-wrapper">
             <img
@@ -228,38 +220,30 @@ const Comment = ({
         {/* drop Up menu fpr comments */}
         <div className={isActive ? 'actOnComment' : null}>
           <div className="comment__more ">
-            <a
-              className="comment__more-item"
-              href="#"
-              onClick={deleteCommentHandler}
-            >
+            <span className="comment__more-item" onClick={deleteCommentHandler}>
               <img
                 src={deleteIcon}
                 className="comment__commentIcons-icon"
                 alt="Delete Icon"
               />
               <span> Delete post </span>
-            </a>
-            <a
-              className="comment__more-item"
-              href="#"
-              onClick={editPostHandler}
-            >
+            </span>
+            <span className="comment__more-item" onClick={editPostHandler}>
               <img
                 src={editIcon}
                 className="comment__commentIcons-icon"
                 alt="Edit Icon"
               />
               <span>Edit post</span>
-            </a>
-            <a className="comment__more-item" id="repost" href="#">
+            </span>
+            <span className="comment__more-item" id="repost">
               <img
                 src={repostIcon}
                 className="comment__commentIcons-icon"
                 alt="Repost Icon"
               />
               <span>Repost</span>
-            </a>
+            </span>
           </div>
         </div>
       </div>

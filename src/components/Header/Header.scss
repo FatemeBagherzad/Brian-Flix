@@ -57,32 +57,7 @@
       }
     }
     &--uploadBtn {
-      grid-area: upload;
-      height: 4rem;
-      width: 100%;
-      font-size: 1rem;
-      font-weight: 700;
-      color: $bg-color;
-      background-color: $cta-outline-color;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: none;
-      border-radius: 4px;
-      margin-top: 1.6rem;
-      position: relative;
-      &:hover {
-        cursor: pointer;
-        background-color: $CTA-hov-color;
-      }
-      &-icon {
-        position: absolute;
-        left: 0.5rem;
-      }
-      @include tablet {
-        margin: 0;
-        width: 15rem;
-      }
+      grid-area: upload !important;
     }
     &--userImg {
       grid-area: user;

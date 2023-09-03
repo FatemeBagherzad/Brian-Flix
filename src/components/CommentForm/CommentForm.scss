@@ -72,32 +72,19 @@
     }
 
     &--btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: $cta-outline-color;
-      border: none;
-      color: $bg-color;
-      width: 100%;
-
-      padding: 1.2rem 5rem;
-      border-radius: 4px;
-      font-size: 1rem;
-      position: relative;
+      padding: 1.2rem 5rem !important;
 
       &:hover {
-        cursor: pointer;
-        font-weight: 600;
+        font-weight: 600 !important;
       }
       &-icon {
-        position: absolute;
-        left: 1rem;
+        left: 1rem !important;
       }
       @include tablet {
-        font-size: 1.2rem;
-        width: auto;
-        align-self: flex-end;
-        height: 5rem;
+        font-size: 1.2rem !important;
+        width: auto !important;
+        align-self: flex-end !important;
+        height: 5rem !important;
       }
     }
   }

@@ -27,6 +27,7 @@ const Upload = () => {
           <img
             src={bikeingThumbnail}
             className="uploadSection__thumbnail--img"
+            alt="a person biking"
           />
         </div>
 
@@ -60,7 +61,7 @@ const Upload = () => {
           </span>
 
           <button
-            className="uploadSection__btnWrapper--videoUploaded-btn"
+            className="uploadSection__btnWrapper--videoUploaded-btn btn"
             onClick={() => {
               navigate('/');
             }}
@@ -68,27 +69,23 @@ const Upload = () => {
             go to home page!
           </button>
           <button
-            className="uploadSection__btnWrapper--videoUploaded-btn"
+            className="uploadSection__btnWrapper--videoUploaded-btn btn"
             onClick={closeUploadDialog}
           >
             stay here!
           </button>
         </div>
 
-        <button className="uploadSection__uploadBtn" id="cancel">
+        <button className="btn" id="cancel">
           CANCEL
         </button>
         <button
-          className="uploadSection__uploadBtn"
+          className="btn"
           onClick={() => {
             setIsOpen(true);
           }}
         >
-          <img
-            src={publishIcon}
-            className="uploadSection__uploadBtn-icon"
-            alt="Upload Icon"
-          />
+          <img src={publishIcon} className="btn-icon" alt="Upload Icon" />
           PUBLISH
         </button>
       </div>

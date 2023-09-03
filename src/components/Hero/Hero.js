@@ -23,13 +23,11 @@ const Hero = ({ currentVideo }) => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [isDraggingSeekBar, setIsDraggingSeekBar] = useState(false);
-  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     videoRef.current.load();
     videoRef.current.currentTime = 0;
     setIsPlaying(false);
-    setProgress(0);
     setRemaintime(0);
   }, [currentVideo.image]);
 
@@ -59,37 +57,19 @@ const Hero = ({ currentVideo }) => {
   };
   const handleMouseUp = () => {
     if (isDraggingSeekBar) {
-      videoRef.current.play(); // Resume video playback if it was paused while dragging.
+      videoRef.current.play();
       setIsDraggingSeekBar(false);
     }
   };
   const handleProgress = () => {
-    setProgress(0);
-    if (videoRef.current.currentTime === 0) {
-      setProgress(0);
-      setPlaytime(0);
-      setRemaintime(0);
-    }
-
     const duration = videoRef.current.duration;
     const currentTime = videoRef.current.currentTime;
-    const prog = (currentTime / duration) * 100;
-
-    setProgress(prog);
+    // const prog = (currentTime / duration) * 100;
 
     let remain = (duration - currentTime).toFixed(2);
     setRemaintime(remain);
-
     let playtm = currentTime.toFixed(2);
     setPlaytime(playtm);
-
-    if (prog >= 100) {
-      videoRef.current.currentTime = 0;
-      console.log(videoRef.current.currentTime);
-      setProgress(0);
-      setPlaytime(0);
-      setRemaintime(0);
-    }
     if (!isDraggingSeekBar) {
       setCurrentTime(videoRef.current.currentTime);
     }
@@ -122,8 +102,6 @@ const Hero = ({ currentVideo }) => {
           setIsPlaying(false);
           videoRef.current.load();
         }}
-        // onPlay={() => setIsPlaying(true)}
-        // onPause={() => setIsPlaying(false)}
         poster={currentVideo.image}
         className="hero__video"
       >
@@ -166,7 +144,7 @@ const Hero = ({ currentVideo }) => {
             />
             <div
               className="controls__input--overlay"
-              style={{ width: `${progress}%` }}
+              style={{ width: `${currentTime * 10}%` }}
             ></div>
           </div>
           <span className="controls__containers--btn">

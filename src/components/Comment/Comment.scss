@@ -73,25 +73,8 @@
         }
       }
       &-btn {
-        align-self: flex-end;
-        font-size: 1rem;
-        font-weight: 700;
-        color: $bg-color;
-        background-color: $cta-outline-color;
-        border: none;
-        border-radius: 4px;
-        padding: 0.5rem 2rem;
-        &:hover {
-          cursor: pointer;
-          background-color: $CTA-hov-color;
-        }
-        &-icon {
-          position: absolute;
-          left: 0.5rem;
-        }
-        @include tablet {
-          width: 15rem;
-        }
+        align-self: flex-end !important;
+        padding: 0.5rem 2rem !important;
       }
     }
   }
