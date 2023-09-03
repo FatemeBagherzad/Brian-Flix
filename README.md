@@ -7,9 +7,9 @@ Also I used and practiced **useState** to add a
 state variable to all components.
 
 📢I rebuild whole control bar of video by myself
-using react **useState** 🎉
-**Update1**: I have fixed video control reload with useEffect🥳
-**Update2**: I have tried editing, deleting and posting comments on every video which I hope I can Improve it in future😊
+using react **useState** 🎉<br/>
+**Update1**: I have fixed video control reload with useEffect🥳<br/>
+**Update2**: I have tried editing, deleting and posting comments on every video which I hope I can Improve it in future😊<br/>
 
 ## Version
 
