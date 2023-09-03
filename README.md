@@ -8,6 +8,8 @@ state variable to all components.
 
 📢I rebuild whole control bar of video by myself
 using react **useState** 🎉
+**Update1**: I have fixed video control reload with useEffect🥳
+**Update2**: I have tried editing, deleting and posting comments on every video which I hope I can Improve it in future😊
 
 ## Version
 
