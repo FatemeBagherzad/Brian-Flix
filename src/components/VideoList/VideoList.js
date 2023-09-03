@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import Video from '../Video/Video';
 import '../VideoList/VideoList.scss';
 
-const VideoList = ({ videos, currentVideo, updateVideoList }) => {
+const VideoList = ({ videos, currentVideo }) => {
   const allVideosButCurrent = videos.filter(
     (obj) => obj.id !== currentVideo.id
   );
@@ -13,7 +13,7 @@ const VideoList = ({ videos, currentVideo, updateVideoList }) => {
         allVideosButCurrent.map((video, index) => {
           return (
             <Link to={`/video/${video.id}`} key={index + video.id}>
-              <Video video={video} updateVideoList={updateVideoList} />
+              <Video video={video} />
             </Link>
           );
         })}

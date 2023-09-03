@@ -113,6 +113,9 @@ hr {
     justify-content: space-between;
   }
 }
+.nav__logoContainer:hover {
+  cursor: pointer;
+}
 .nav__logo {
   height: 25px;
 }

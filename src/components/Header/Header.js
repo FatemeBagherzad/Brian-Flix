@@ -11,13 +11,15 @@ const Header = () => {
   return (
     <div className="container">
       <div className="nav">
-        <a
+        <div
+          className="nav__logoContainer"
           onClick={() => {
             navigate('/');
           }}
         >
           <img src={logo} className="nav__logo" alt="Brain Flix Logo" />
-        </a>
+        </div>
+
         <div className="nav__right">
           <div className="nav__right--searchWrapper">
             <img
@@ -31,6 +33,7 @@ const Header = () => {
               className="nav__right--searchWrapper-input"
             />
           </div>
+
           <button
             className="nav__right--uploadBtn btn"
             onClick={() => {
@@ -44,6 +47,7 @@ const Header = () => {
             />
             UPLOAD
           </button>
+
           <img src={user} className="nav__right--userImg" alt="Person" />
         </div>
       </div>

@@ -228,6 +228,7 @@ hr {
 }
 .uploadSection__btnWrapper--videoUploaded-btn:hover {
   color: #fafafa !important;
+  background-color: #0065ad !important;
 }
 .uploadSection__devider {
   display: none;

@@ -14,6 +14,12 @@
     justify-content: space-between;
   }
 
+  &__logoContainer {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   &__logo {
     height: 25px;
   }
@@ -22,7 +28,6 @@
     grid-template-areas:
       'search search search search search search search search search user'
       'upload upload upload upload upload upload upload upload upload upload';
-    // gap: 1.6rem;
     width: 100%;
     position: relative;
     @include tablet {
