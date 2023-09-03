@@ -1,13 +1,15 @@
 # BrainFlix Project
 
-In this project I practiced chunking an existing</br>
-site into React components and converting an</br>
-existing static site into a React app.</br>
-Also I used and practiced **useState** to add a</br>
-state variable to all components.<br/>
+In this project I practiced chunking an existing
+site into React components and converting an
+existing static site into a React app.
+Also I used and practiced **useState** to add a
+state variable to all components.
 
-📢I rebuild whole control bar of video by myself</br>
-using react **useState**🎉
+📢I rebuild whole control bar of video by myself
+using react **useState** 🎉
+**Update1**: I have fixed video control reload with useEffect🥳
+**Update2**: I have tried editing, deleting and posting comments on every video which I hope I can Improve it in future😊
 
 ## Version
 
@@ -25,13 +27,12 @@ To start I followed this path:
 
 <li>📝 npx create-react-app brainflix</li>
 <li>📝 npm start (From Root Folder)</li>
-
 To install SASS:
 
 <li>📝 npm i sass</li>
-
 And to bring back the libray:
 
-<li>📝 npm i</li>
+<li>📝 npm i
 
-if you got value from this -- plz give us me star 🙂⭐
+👉Please Help me with your valuable feedback about this project 🙂⭐</br>
+Let's connect via LinkedIn : [link](https://www.linkedin.com/in/fatemeh-bagherzad/)
