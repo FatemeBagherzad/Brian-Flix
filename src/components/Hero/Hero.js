@@ -20,9 +20,9 @@ const Hero = ({ currentVideo }) => {
   const [remaintime, setRemaintime] = useState(0);
   const [isLooping, setIsLooping] = useState(false);
   const [showSubtitles, setShowSubtitles] = useState(false);
-  const [isFullScreen, setIsFullScreen] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [isDraggingSeekBar, setIsDraggingSeekBar] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
     videoRef.current.load();
@@ -64,8 +64,6 @@ const Hero = ({ currentVideo }) => {
   const handleProgress = () => {
     const duration = videoRef.current.duration;
     const currentTime = videoRef.current.currentTime;
-    // const prog = (currentTime / duration) * 100;
-
     let remain = (duration - currentTime).toFixed(2);
     setRemaintime(remain);
     let playtm = currentTime.toFixed(2);
@@ -77,19 +75,80 @@ const Hero = ({ currentVideo }) => {
   const handleSubtitles = () => {
     setShowSubtitles(!showSubtitles);
   };
-  const handleFullScreen = () => {
-    if (!isFullScreen) {
-      videoContainerRef.current.requestFullscreen();
-      setIsFullScreen(true);
-    } else {
-      document.exitFullscreen();
-      setIsFullScreen(false);
-    }
-  };
   const handleVolumeChange = (event) => {
     setVolume(event.target.value);
     videoRef.current.volume = event.target.value;
   };
+
+  //Full Screen ---------------
+  const toggleFullscreen = () => {
+    const video = videoRef.current;
+
+    if (!isFullscreen) {
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      } else if (video.mozRequestFullScreen) {
+        video.mozRequestFullScreen();
+      } else if (video.webkitRequestFullscreen) {
+        video.webkitRequestFullscreen();
+      } else if (video.msRequestFullscreen) {
+        video.msRequestFullscreen();
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+    }
+
+    setIsFullscreen(!isFullscreen);
+  };
+  const handleFullscreenChange = () => {
+    if (
+      document.fullscreenElement ||
+      document.mozFullScreenElement ||
+      document.webkitFullscreenElement ||
+      document.msFullscreenElement
+    ) {
+      setIsFullscreen(true);
+    } else {
+      setIsFullscreen(false);
+    }
+  };
+  const handleEscKey = (event) => {
+    if (event.key === 'Escape' && isFullscreen) {
+      toggleFullscreen();
+    }
+  };
+  useEffect(() => {
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('msfullscreenchange', handleFullscreenChange);
+    document.addEventListener('keydown', handleEscKey);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener(
+        'mozfullscreenchange',
+        handleFullscreenChange
+      );
+      document.removeEventListener(
+        'webkitfullscreenchange',
+        handleFullscreenChange
+      );
+      document.removeEventListener(
+        'msfullscreenchange',
+        handleFullscreenChange
+      );
+      document.removeEventListener('keydown', handleEscKey);
+    };
+  }, [isFullscreen]);
 
   // --------------------------------------------
 
@@ -165,10 +224,10 @@ const Hero = ({ currentVideo }) => {
           </button>
 
           <button
-            onClick={handleFullScreen}
+            onClick={toggleFullscreen}
             className="controls__containers--btn"
           >
-            {isFullScreen ? <FaCompress /> : <FaExpand />}
+            {isFullscreen ? <FaCompress /> : <FaExpand />}
           </button>
 
           <button
