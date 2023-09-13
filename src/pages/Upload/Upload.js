@@ -89,6 +89,12 @@ const Upload = () => {
           PUBLISH
         </button>
       </div>
+
+      <form action="/api" method="post" enctype="multipart/form-data">
+        <label for="file">File</label>
+        <input id="file" name="file" type="file" />
+        <button>Upload</button>
+      </form>
     </>
   );
 };

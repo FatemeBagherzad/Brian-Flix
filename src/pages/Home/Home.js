@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-import APIService from '../../components/APIService';
 import Header from '../../components/Header/Header';
 import Hero from '../../components/Hero/Hero';
 import VideoDescription from '../../components/VideoDescription/VideoDescription';
@@ -19,14 +18,15 @@ function Home() {
   const commentSubmitHandler = (event) => {
     event.preventDefault();
     axios
-      .post(
-        `https://project-2-api.herokuapp.com/videos/${currentVideo.id}/comments?api_key=4e15e296-a8f6-4d61-bffb-cad423b094d8`,
-        { name: 'user', comment: `${event.target.comment.value}` }
-      )
-      .then(() => {
-        APIService.getVideoById(currentVideo.id).then((response) => {
-          setCurrentVideo(response);
-        });
+      .post('http://localhost:8888/videos/' + videoId, {
+        name: 'user',
+        comment: `${event.target.comment.value}`,
+        likes: 0,
+        timeStamp: 0,
+      })
+      .then((response) => {
+        console.log(response.data);
+        setCurrentVideo(response.data);
       })
       .catch((err) => console.log(err));
 
@@ -34,20 +34,19 @@ function Home() {
   };
 
   useEffect(() => {
-    APIService.getAllVideosSummary().then((response) => {
-      setVideos(response);
+    axios.get('http://localhost:8888/videos').then((response) => {
+      setVideos(response.data);
     });
   }, []);
-
   useEffect(() => {
     if (videos.length > 0) {
-      APIService.getVideoById(videoId ? videoId : videos[0].id).then(
-        (response) => {
+      const currentid = videoId ? videoId : videos[0].id;
+      axios
+        .get('http://localhost:8888/videos/' + currentid)
+        .then((response) => {
           window.scroll({ top: 0 });
-          // setProgress(0);
-          setCurrentVideo(response);
-        }
-      );
+          setCurrentVideo(response.data);
+        });
     }
   }, [videoId, videos]);
 

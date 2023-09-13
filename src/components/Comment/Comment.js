@@ -1,8 +1,8 @@
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import '../Comment/Comment.scss';
 
-import APIService from '../APIService';
 import likeIcon from '../../assets/icons/likes.svg';
 import commentIcon from '../../assets/icons/comments2.png';
 import repostIcon from '../../assets/icons/repost.png';
@@ -17,13 +17,12 @@ const Comment = ({
   commentTimestamp,
   comment,
   likes,
-  currentVideo,
   setCurrentVideo,
 }) => {
-  const [like, setLikes] = useState(likes);
   const [isActive, setActive] = useState('false');
   const [isEditing, setIsEditing] = useState('false');
   const [textareaV, setTextareaV] = useState('');
+  const { videoId } = useParams();
   //comment date in Time Ago Format------------
   const nowDateinSec = Date.now() / 1000;
   const commentTimeStamp = commentTimestamp / 1000;
@@ -58,27 +57,59 @@ const Comment = ({
     setActive(true);
   };
 
-  const postEditedCommentHandler = (event) => {
+  const editPostCommentHandler = (event) => {
     event.preventDefault();
     axios
-      .delete(
-        `https://project-2-api.herokuapp.com/videos/${currentVideo.id}/comments/${id}?api_key=4e15e296-a8f6-4d61-bffb-cad423b094d8`
-      )
-      .then(() => {
-        axios
-          .post(
-            `https://project-2-api.herokuapp.com/videos/${currentVideo.id}/comments?api_key=4e15e296-a8f6-4d61-bffb-cad423b094d8`,
-            { name: 'user', comment: `${event.target.editComment.value}` }
-          )
-          .then(() => {
-            APIService.getVideoById(currentVideo.id).then((response) => {
-              setCurrentVideo(response);
-            });
-          })
-          .catch((err) => console.log(err));
-      });
+      .patch('http://localhost:8888/videos/' + videoId, {
+        headers: {},
+        data: {
+          id: id,
+          user: name,
+          comment: `${event.target.editComment.value}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        setCurrentVideo(response.data);
+      })
+      .catch((err) => console.log(err));
 
     setIsEditing(true);
+  };
+
+  const likeCommentHandler = () => {
+    axios
+      .patch('http://localhost:8888/videos/' + videoId, {
+        headers: {},
+        data: {
+          id: id,
+          likes: likes * 1 + 1,
+        },
+      })
+      .then((response) => {
+        setCurrentVideo(response.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const deleteCommentHandler = (event) => {
+    console.log(id);
+    event.preventDefault();
+    axios
+      .delete('http://localhost:8888/videos/' + videoId, {
+        headers: {},
+        data: {
+          idToDelete: id,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        setCurrentVideo(response.data);
+        if (!isActive) {
+          setActive(!isActive);
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   //close the input or dropUp menu with Esc---
@@ -91,38 +122,6 @@ const Comment = ({
       setActive(true);
     }
   });
-
-  //No PUT defined in documentation-----------------------
-  const handleLike = () => {
-    // axios
-    //   .put(
-    //     `https://project-1-api.herokuapp.com/comments/${id}/like?api_key=<FatemeBagherzadBrainStationAPI>`
-    //   )
-    //   .then((response) => {
-    //     console.log(response);
-    //     setLikes(like + 1);
-    //   });
-
-    setLikes(like + 1);
-  };
-
-  //------------------------
-  const deleteCommentHandler = (event) => {
-    console.log(event);
-    event.preventDefault();
-    axios
-      .delete(
-        `https://project-2-api.herokuapp.com/videos/${currentVideo.id}/comments/${id}?api_key=4e15e296-a8f6-4d61-bffb-cad423b094d8`
-      )
-      .then(() => {
-        APIService.getVideoById(currentVideo.id).then((response) => {
-          setCurrentVideo(response);
-          if (!isActive) {
-            setActive(!isActive);
-          }
-        });
-      });
-  };
 
   return (
     <div>
@@ -148,7 +147,7 @@ const Comment = ({
             <form
               className="comment__TxtWrapper--edit"
               id={isEditing ? 'showEditBox' : null}
-              onSubmit={postEditedCommentHandler}
+              onSubmit={editPostCommentHandler}
             >
               <textarea
                 id="editComment"
@@ -169,7 +168,7 @@ const Comment = ({
           <span className="comment__likeCounter-heart">
             <img src={likeIcon} alt="Like Icon" />
           </span>
-          <span>{like}</span>
+          <span>{likes}</span>
         </span>
 
         {/* action on comments Icons */}
@@ -194,7 +193,7 @@ const Comment = ({
 
           <div
             className="comment__commentIcons-wrapper like"
-            onClick={handleLike}
+            onClick={likeCommentHandler}
           >
             <img
               src={likethumbIcon}

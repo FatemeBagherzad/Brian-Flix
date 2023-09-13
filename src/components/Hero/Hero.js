@@ -165,7 +165,7 @@ const Hero = ({ currentVideo }) => {
         className="hero__video"
       >
         <source
-          src={`${currentVideo.video}?api_key=BrainFlixVideoSrc`}
+          src={`${currentVideo.videoUrl}?api_key=BrainFlixVideoSrc`}
           type="video/mp4"
         />
       </video>
