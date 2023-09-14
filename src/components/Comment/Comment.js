@@ -17,6 +17,7 @@ const Comment = ({
   commentTimestamp,
   comment,
   likes,
+  currentVideo,
   setCurrentVideo,
 }) => {
   const [isActive, setActive] = useState('false');
@@ -60,7 +61,7 @@ const Comment = ({
   const editPostCommentHandler = (event) => {
     event.preventDefault();
     axios
-      .patch('http://localhost:8888/videos/' + videoId, {
+      .patch('http://localhost:8888/videos/' + currentVideo.id, {
         headers: {},
         data: {
           id: id,
@@ -79,7 +80,7 @@ const Comment = ({
 
   const likeCommentHandler = () => {
     axios
-      .patch('http://localhost:8888/videos/' + videoId, {
+      .patch('http://localhost:8888/videos/' + currentVideo.id, {
         headers: {},
         data: {
           id: id,
@@ -93,10 +94,9 @@ const Comment = ({
   };
 
   const deleteCommentHandler = (event) => {
-    console.log(id);
     event.preventDefault();
     axios
-      .delete('http://localhost:8888/videos/' + videoId, {
+      .delete('http://localhost:8888/videos/' + currentVideo.id, {
         headers: {},
         data: {
           idToDelete: id,

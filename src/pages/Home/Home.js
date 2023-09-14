@@ -14,11 +14,31 @@ function Home() {
   const [videos, setVideos] = useState('');
   const [currentVideo, setCurrentVideo] = useState('');
   const { videoId } = useParams();
+  console.log(process.env);
+
+  useEffect(() => {
+    axios.get('http://localhost:8888/videos').then((response) => {
+      setVideos(response.data);
+      setCurrentVideo(response.data[0]);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (videos.length > 0) {
+      const currentid = videoId ? videoId : videos[0].id;
+      axios
+        .get('http://localhost:8888/videos/' + currentid)
+        .then((response) => {
+          window.scroll({ top: 0 });
+          setCurrentVideo(response.data);
+        });
+    }
+  }, [videoId, videos]);
 
   const commentSubmitHandler = (event) => {
     event.preventDefault();
     axios
-      .post('http://localhost:8888/videos/' + videoId, {
+      .post('http://localhost:8888/videos/' + currentVideo.id, {
         name: 'user',
         comment: `${event.target.comment.value}`,
         likes: 0,
@@ -32,23 +52,6 @@ function Home() {
 
     event.target.comment.value = '';
   };
-
-  useEffect(() => {
-    axios.get('http://localhost:8888/videos').then((response) => {
-      setVideos(response.data);
-    });
-  }, []);
-  useEffect(() => {
-    if (videos.length > 0) {
-      const currentid = videoId ? videoId : videos[0].id;
-      axios
-        .get('http://localhost:8888/videos/' + currentid)
-        .then((response) => {
-          window.scroll({ top: 0 });
-          setCurrentVideo(response.data);
-        });
-    }
-  }, [videoId, videos]);
 
   return (
     <>
