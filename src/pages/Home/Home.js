@@ -14,7 +14,6 @@ function Home() {
   const [videos, setVideos] = useState('');
   const [currentVideo, setCurrentVideo] = useState('');
   const { videoId } = useParams();
-  console.log(process.env);
 
   useEffect(() => {
     axios.get('http://localhost:8888/videos').then((response) => {
@@ -45,7 +44,6 @@ function Home() {
         timeStamp: 0,
       })
       .then((response) => {
-        console.log(response.data);
         setCurrentVideo(response.data);
       })
       .catch((err) => console.log(err));

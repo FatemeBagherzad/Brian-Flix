@@ -1,6 +1,7 @@
 import '../Video/Video.scss';
 
 const Video = ({ video }) => {
+  console.log(video);
   // const selectedvideo = videos.find((video) => video.id === videoId);
   return (
     <div className="video">

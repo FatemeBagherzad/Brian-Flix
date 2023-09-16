@@ -12,7 +12,7 @@
 
   @include desktop {
     grid-template-columns: 1fr 3fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: auto;
   }
 
   &__header {
@@ -39,7 +39,9 @@
       border-radius: 5px;
       max-width: 90vw;
       @include tablet {
-        width: 50rem;
+        width: 500px;
+        height: 266px;
+        object-fit: cover;
       }
     }
   }
@@ -75,6 +77,40 @@
     &--textarea {
       height: 100%;
       font-family: inherit;
+    }
+  }
+  &__uploadFile {
+    display: flex;
+    justify-content: center;
+    margin: 6rem auto;
+    &::-webkit-file-upload-button {
+      visibility: hidden;
+    }
+    &::before {
+      content: 'ADD YOUR COVER PHOTO';
+      height: 5rem;
+      width: 100%;
+      font-size: 1rem;
+      font-weight: 700;
+      color: $bg-color;
+      background-color: $cta-outline-color;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    @include tablet {
+      width: 30rem;
+    }
+    &:hover::before {
+      cursor: pointer;
+      background-color: $CTA-hov-color;
+    }
+    &:active::before {
+      background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
     }
   }
   &__btnWrapper {
@@ -138,4 +174,48 @@
 }
 #closeUploadBox {
   display: none;
+}
+
+.uploadGuide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &__title {
+    color: $label-color;
+    font-weight: 600;
+    letter-spacing: 1.5;
+    align-self: flex-start;
+    margin-top: 1rem;
+    @include desktop {
+      align-self: center;
+    }
+  }
+  &__tips {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    @include desktop {
+      flex-direction: row;
+      justify-content: center;
+      padding: 0 10rem;
+    }
+    &-tip {
+      background-color: $form-bg-color;
+      color: $txt-color-1;
+      border: 1px solid $divider-color;
+      border-radius: 4px;
+      padding: 1rem 2rem;
+      width: 80%;
+      height: auto;
+      font-size: 1.2rem;
+      @include desktop {
+        width: 30%;
+        height: 8.5rem;
+      }
+    }
+  }
 }
