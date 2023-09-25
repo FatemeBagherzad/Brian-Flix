@@ -24,16 +24,16 @@ The React version: **v18.17.0**
 <li>3-HTML,CSS,SASS</li>
 <li>4-Express</li>
 
-
 ## Setup
 
 To start I followed this path:
 
 <li>📝 npx create-react-app brainflix</li>
 <li>📝 npm start (From Root Folder)</li>
-To install SASS:
+<li>📝 npm init to set up a npm package fro backend</li>
+To install All dependencies:
 
-<li>📝 npm i sass</li>
+<li>📝 npm i express cors dotenv morgan multer nodemon uniqid axios </li>
 And to bring back the libray:
 
 <li>📝 npm i
