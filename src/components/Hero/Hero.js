@@ -203,7 +203,7 @@ const Hero = ({ currentVideo }) => {
             />
             <div
               className="controls__input--overlay"
-              style={{ width: `${currentTime * 10}%` }}
+              style={{ width: `${currentTime * 5}%` }}
             ></div>
           </div>
           <span className="controls__containers--btn">
