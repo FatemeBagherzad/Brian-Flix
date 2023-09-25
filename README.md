@@ -11,7 +11,7 @@ using react **useState** 🎉<br/> -
 **Update1**: I have fixed video control reload with useEffect🥳<br/> -
 **Update2**: I have tried editing, deleting and posting comments on every video which I hope I can Improve it in future😊<br/>
 
-**Update3**: I created back end for this project using: express, cors, multer,morgan, dotenv, uniqid and nodemon. Uploading image to back end was challenging that I could solve it.
+**Update3**: I created back end for this project using: express, cors, multer,morgan, dotenv, uniqid and nodemon. Uploading image to back end was challenging that I could solve it🥳.
 
 ## Version
 
@@ -30,7 +30,7 @@ To start I followed this path:
 
 <li>📝 npx create-react-app brainflix</li>
 <li>📝 npm start (From Root Folder)</li>
-<li>📝 npm init to set up a npm package fro backend</li>
+<li>📝 npm init to set up a npm package for backend</li>
 To install All dependencies:
 
 <li>📝 npm i express cors dotenv morgan multer nodemon uniqid axios </li>
