@@ -1,6 +1,6 @@
 import '../CommentForm/CommentForm.scss';
 import addCommentIcon from '../../assets/icons/add_comment.svg';
-import userImg from '../../assets/images/Mohan-muruge.jpg';
+import userImg from '../../assets/images/fateme.jpg';
 
 const CommentForm = ({ commentSubmitHandler, currentVideo }) => {
   return (

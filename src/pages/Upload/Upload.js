@@ -12,6 +12,8 @@ const Upload = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [imageSrc, setImageSrc] = useState('');
   const [file, setFile] = useState();
+  const [error, setError] = useState('');
+  const [newVideoId, setNewVideoId] = useState(null);
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -27,28 +29,58 @@ const Upload = () => {
     }
   };
 
-  const videoSubmitHandler = (event) => {
+  const videoSubmitHandler = async (event) => {
     event.preventDefault();
-    setIsOpen(true);
+
     const formData = new FormData();
     formData.append('title', event.target.uploadTitle.value);
-    formData.append('channel', 'user');
+    formData.append('channel', 'Fateme');
     formData.append('description', event.target.videoDescription.value);
+
+    if (!file) {
+      setError('Please attach a video file.');
+      setIsOpen(false);
+      return;
+    }
     formData.append('file', file);
 
-    for (let [key, value] of formData.entries()) {
-      console.log(key, value);
+    if (
+      !event.target.uploadTitle.value ||
+      !event.target.videoDescription.value
+    ) {
+      setError(
+        'Please fill out both the title and description and attach your video.'
+      );
+      setIsOpen(false);
+      return;
     }
-    axios
-      .post('http://localhost:8888/videos', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((err) => console.log(err));
+    setError('');
+    setIsOpen(true);
+    // for (let [key, value] of formData.entries()) {
+    //   console.log(key, value);
+    // }
+
+    try {
+      const response = await axios.post(
+        'http://localhost:8888/videos',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+      console.log(response.data.data);
+      setNewVideoId(response.data.data.id);
+      if (response.status === 201) {
+        setIsOpen(true);
+      } else {
+        setError('Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      setError('Failed to upload the video. Please try again.');
+      console.error(err);
+    }
 
     event.target.uploadTitle.value = '';
     event.target.videoDescription.value = '';
@@ -105,6 +137,7 @@ const Upload = () => {
               name="videoDescription"
               placeholder="Add a description to your video"
             ></textarea>
+            <p className="error">{error}</p>
           </div>
         </section>
 
@@ -120,9 +153,9 @@ const Upload = () => {
         </div>
 
         <div className="uploadGuide">
-          {/* <span className="uploadGuide__title">
+          <span className="uploadGuide__title">
             Our tips for easily uploading your videos
-          </span> */}
+          </span>
           <div className="uploadGuide__tips">
             <div className="uploadGuide__tips-tip">
               You can upload your cover photo that is .JPEG, .JPG, or .PNG.
@@ -151,7 +184,7 @@ const Upload = () => {
             <button
               className="uploadSection__btnWrapper--videoUploaded-btn btn"
               onClick={() => {
-                navigate('/');
+                navigate(`/video/${newVideoId}`);
               }}
             >
               go to home page!
@@ -164,7 +197,13 @@ const Upload = () => {
             </button>
           </div>
 
-          <button className="btn" id="cancel">
+          <button
+            className="btn"
+            id="cancel"
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
             CANCEL
           </button>
           <button className="btn" type="submit">

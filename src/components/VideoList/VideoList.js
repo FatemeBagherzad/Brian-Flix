@@ -21,3 +21,4 @@ const VideoList = ({ videos, currentVideo }) => {
   );
 };
 export default VideoList;
+<section></section>;

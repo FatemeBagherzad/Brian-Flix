@@ -3,7 +3,7 @@ import axios from 'axios';
 const getVideoById = async (id) => {
   try {
     const response = await axios.get(
-      `https://project-2-api.herokuapp.com/videos/${id}?api_key=4e15e296-a8f6-4d61-bffb-cad423b094d8`
+      `https://unit-3-project-api-0a5620414506.herokuapp.com/videos/${id}?api_key=68532983-3fe4-4171-8e77-7003c567d0dd`
     );
     document.title = response.data.title;
     return response.data;
@@ -16,7 +16,7 @@ const getVideoById = async (id) => {
 const getAllVideosSummary = async () => {
   try {
     const response = await axios.get(
-      `https://project-2-api.herokuapp.com/videos?api_key=4e15e296-a8f6-4d61-bffb-cad423b094d8`
+      `https://unit-3-project-api-0a5620414506.herokuapp.com/videos?api_key=68532983-3fe4-4171-8e77-7003c567d0dd`
     );
     return response.data;
   } catch (error) {
@@ -25,4 +25,4 @@ const getAllVideosSummary = async () => {
   }
 };
 
-export default { getVideoById, getAllVideosSummary };
+export { getVideoById, getAllVideosSummary };

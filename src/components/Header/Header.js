@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo/BrainFlix-logo.svg';
 import searchIcon from '../../assets/icons/search.svg';
 import uploadIcon from '../../assets/icons/upload.svg';
-import user from '../../assets/images/Mohan-muruge.jpg';
+import user from '../../assets/images/fateme.jpg';
 import './Header.scss';
 
 const Header = () => {

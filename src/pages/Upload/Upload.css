@@ -142,7 +142,10 @@ hr {
 }
 @media screen and (min-width: 768px) {
   .uploadSection__thumbnail--img {
-    width: 50rem;
+    width: 500px;
+    height: 266px;
+    -o-object-fit: cover;
+       object-fit: cover;
   }
 }
 .uploadSection__form {
@@ -335,4 +338,8 @@ hr {
     width: 30%;
     height: 8.5rem;
   }
+}
+
+.error {
+  color: rgb(253, 66, 66);
 }

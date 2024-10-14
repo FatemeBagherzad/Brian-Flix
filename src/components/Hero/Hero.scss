@@ -126,7 +126,7 @@ video[poster] {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: $cta-outline-color;
+    background-color: red;
     cursor: pointer;
   }
   & input[type='range']::-webkit-slider-runnable-track {
@@ -181,7 +181,7 @@ video[poster] {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background-color: $cta-outline-color;
+  background-color: red;
   cursor: pointer;
 }
 .volume__input::-webkit-slider-runnable-track {

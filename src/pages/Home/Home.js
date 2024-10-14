@@ -2,9 +2,9 @@ import './Home.scss';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-
 import Header from '../../components/Header/Header';
 import Hero from '../../components/Hero/Hero';
+import Hero2 from '../../components/Hero/Hero2';
 import VideoDescription from '../../components/VideoDescription/VideoDescription';
 import VideoList from '../../components/VideoList/VideoList';
 import CommentList from '../../components/CommentList/CommentList';
@@ -14,6 +14,7 @@ function Home() {
   const [videos, setVideos] = useState('');
   const [currentVideo, setCurrentVideo] = useState('');
   const { videoId } = useParams();
+  const [restaurants, setRestaurants] = useState('');
 
   useEffect(() => {
     axios.get('http://localhost:8888/videos').then((response) => {
@@ -38,7 +39,7 @@ function Home() {
     event.preventDefault();
     axios
       .post('http://localhost:8888/videos/' + currentVideo.id, {
-        name: 'user',
+        name: 'Fateme',
         comment: `${event.target.comment.value}`,
         likes: 0,
         timeStamp: 0,
@@ -55,7 +56,7 @@ function Home() {
     <>
       <Header />
 
-      {currentVideo && <Hero currentVideo={currentVideo} />}
+      {currentVideo && <Hero2 currentVideo={currentVideo} />}
 
       <div className="container textContainer">
         <div className="textContainer__videoDesAndComments">
