@@ -31,7 +31,7 @@ const Upload = () => {
 
   const videoSubmitHandler = async (event) => {
     event.preventDefault();
-
+    setIsOpen(false);
     const formData = new FormData();
     formData.append('title', event.target.uploadTitle.value);
     formData.append('channel', 'Fateme');
@@ -59,7 +59,7 @@ const Upload = () => {
     // for (let [key, value] of formData.entries()) {
     //   console.log(key, value);
     // }
-
+    console.log(isOpen);
     try {
       const response = await axios.post(
         'http://localhost:8888/videos',
@@ -71,15 +71,17 @@ const Upload = () => {
         }
       );
       console.log(response.data.data);
-      setNewVideoId(response.data.data.id);
+
       if (response.status === 201) {
-        setIsOpen(true);
+        setNewVideoId(response.data.data.id);
+        setIsOpen(true); // Keep dialog open after successful upload
       } else {
-        setError('Something went wrong. Please try again.');
+        setError('Failed to upload the video. Please try again.');
       }
     } catch (err) {
       setError('Failed to upload the video. Please try again.');
       console.error(err);
+      setIsOpen(false);
     }
 
     event.target.uploadTitle.value = '';
@@ -153,9 +155,9 @@ const Upload = () => {
         </div>
 
         <div className="uploadGuide">
-          <span className="uploadGuide__title">
+          {/* <span className="uploadGuide__title">
             Our tips for easily uploading your videos
-          </span>
+          </span> */}
           <div className="uploadGuide__tips">
             <div className="uploadGuide__tips-tip">
               You can upload your cover photo that is .JPEG, .JPG, or .PNG.
@@ -172,31 +174,31 @@ const Upload = () => {
 
         <hr className="uploadSection__devider container" />
 
-        <div className="uploadSection__btnWrapper container">
-          <div
-            className="uploadSection__btnWrapper--videoUploaded"
-            id={!isOpen ? 'closeUploadBox' : null}
+        <div
+          className="uploadSection__btnWrapper--videoUploaded container"
+          id={!isOpen ? 'closeUploadBox' : null}
+        >
+          <span>
+            Your video has been <strong>uploaded</strong>.
+          </span>
+
+          <button
+            className="uploadSection__btnWrapper--videoUploaded-btn btn"
+            onClick={() => {
+              navigate(`/video/${newVideoId}`);
+            }}
           >
-            <span>
-              Your video has been <strong>uploaded</strong>.
-            </span>
+            go to home page!
+          </button>
+          <button
+            className="uploadSection__btnWrapper--videoUploaded-btn btn"
+            onClick={closeUploadDialog}
+          >
+            stay here!
+          </button>
+        </div>
 
-            <button
-              className="uploadSection__btnWrapper--videoUploaded-btn btn"
-              onClick={() => {
-                navigate(`/video/${newVideoId}`);
-              }}
-            >
-              go to home page!
-            </button>
-            <button
-              className="uploadSection__btnWrapper--videoUploaded-btn btn"
-              onClick={closeUploadDialog}
-            >
-              stay here!
-            </button>
-          </div>
-
+        <div className="uploadSection__btnWrapper container">
           <button
             className="btn"
             id="cancel"

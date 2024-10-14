@@ -13,6 +13,12 @@ using react **useState** 🎉<br/> -
 **Update2**: I have tried editing, deleting and posting comments on every video which I hope I can Improve it in future😊<br/>
 **Update3**: I created back end for this project using: express, cors, multer,morgan, dotenv, uniqid and nodemon. Uploading image to back end was challenging that I could solve it🥳.
 
+## Animated Demo
+
+Here’s an animated preview of the project:
+
+![Project Demo](gif/brainflix.gif)
+
 ## Version
 
 The React version: **v18.17.0**

@@ -187,7 +187,7 @@ hr {
 .uploadSection__uploadFile {
   display: flex;
   justify-content: center;
-  margin: 6rem auto;
+  margin: 4rem auto;
 }
 .uploadSection__uploadFile::-webkit-file-upload-button {
   visibility: hidden;
@@ -227,7 +227,6 @@ hr {
   flex-direction: column-reverse;
   margin-top: 2rem;
   justify-content: flex-end;
-  position: relative;
 }
 @media screen and (min-width: 768px) {
   .uploadSection__btnWrapper {
@@ -236,10 +235,10 @@ hr {
 }
 .uploadSection__btnWrapper--videoUploaded {
   position: absolute;
-  bottom: 11rem;
+  top: 95rem;
   right: calc(50vw - 12rem);
-  background-color: #0095ff;
   width: 25rem;
+  background-color: #0095ff;
   margin: auto;
   padding: 2rem 2rem;
   display: flex;
@@ -249,14 +248,15 @@ hr {
 }
 @media screen and (min-width: 768px) {
   .uploadSection__btnWrapper--videoUploaded {
-    bottom: 5rem;
+    top: 90rem;
     right: 0;
-  }
-}
-@media screen and (min-width: 768px) {
-  .uploadSection__btnWrapper--videoUploaded {
     width: 40rem;
     padding: 2rem 8rem;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .uploadSection__btnWrapper--videoUploaded {
+    top: 60rem;
   }
 }
 .uploadSection__btnWrapper--videoUploaded-btn {
@@ -284,6 +284,14 @@ hr {
 #cancel {
   background-color: #ffffff;
   color: #0095ff;
+  border: 1px solid grey;
+  margin-bottom: 500px;
+}
+@media screen and (min-width: 768px) {
+  #cancel {
+    border: none;
+    margin-bottom: none;
+  }
 }
 
 #closeUploadBox {
@@ -313,7 +321,6 @@ hr {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  margin-top: 1rem;
   margin-bottom: 3rem;
 }
 @media screen and (min-width: 1280px) {

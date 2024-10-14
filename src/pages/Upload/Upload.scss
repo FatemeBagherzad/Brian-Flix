@@ -82,7 +82,7 @@
   &__uploadFile {
     display: flex;
     justify-content: center;
-    margin: 6rem auto;
+    margin: 4rem auto;
     &::-webkit-file-upload-button {
       visibility: hidden;
     }
@@ -113,6 +113,7 @@
       background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
     }
   }
+
   &__btnWrapper {
     display: flex;
     gap: 1rem;
@@ -120,31 +121,32 @@
     flex-direction: column-reverse;
     margin-top: 2rem;
     justify-content: flex-end;
-    position: relative;
+
     @include tablet {
       flex-direction: row;
     }
+
     &--videoUploaded {
       position: absolute;
-      bottom: 11rem;
+      top: 95rem;
       right: calc((100vw / 2) - 12rem);
-      @include tablet {
-        bottom: 5rem;
-        right: 0;
-      }
-      background-color: $cta-outline-color;
       width: 25rem;
+      background-color: $cta-outline-color;
       margin: auto;
       padding: 2rem 2rem;
-
-      @include tablet {
-        width: 40rem;
-        padding: 2rem 8rem;
-      }
       display: flex;
       flex-direction: column;
       gap: 1rem;
       border-radius: 4px;
+      @include tablet {
+        top: 90rem;
+        right: 0;
+        width: 40rem;
+        padding: 2rem 8rem;
+      }
+      @include desktop {
+        top: 60rem;
+      }
       &-btn {
         height: 3rem !important;
         width: 100%;
@@ -171,6 +173,12 @@
 #cancel {
   background-color: $bg-color;
   color: $cta-outline-color;
+  border: 1px solid grey;
+  margin-bottom: 500px;
+  @include tablet {
+    border: none;
+    margin-bottom: none;
+  }
 }
 #closeUploadBox {
   display: none;
@@ -196,7 +204,6 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    margin-top: 1rem;
     margin-bottom: 3rem;
     @include desktop {
       flex-direction: row;
