@@ -1,0 +1,23 @@
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/globals' as *;
+
+.video {
+  display: flex;
+  gap: 2rem;
+  &__img {
+    width: 150px;
+    height: 100px;
+    border-radius: 4px;
+    background-color: $divider-color;
+  }
+  &__txtCont {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    &-header {
+      font-weight: 700;
+    }
+  }
+}

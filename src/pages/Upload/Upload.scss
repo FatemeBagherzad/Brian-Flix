@@ -1,0 +1,224 @@
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/globals' as *;
+
+.uploadSection {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  gap: 3rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+
+  @include desktop {
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: auto;
+  }
+
+  &__header {
+    font-size: 2.4rem;
+    line-height: 1.2;
+    font-weight: 700;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+    @include desktop {
+      font-size: 3.3rem;
+    }
+  }
+  &__thumbnail {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    &--txt {
+      color: $label-color;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    &--img {
+      border-radius: 5px;
+      max-width: 90vw;
+      @include tablet {
+        width: 500px;
+        height: 266px;
+        object-fit: cover;
+      }
+    }
+  }
+  &__form {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    font-size: 1rem;
+    @include tablet {
+      font-size: 1.2rem;
+    }
+    &--label {
+      color: $label-color;
+      font-weight: 600;
+      letter-spacing: 1.5;
+    }
+    &--input {
+      padding: 1rem;
+      width: 100%;
+      background-color: $form-bg-color;
+      border: 1px solid $divider-color;
+      border-radius: 4px;
+      outline: none;
+      &:focus {
+        border: 2px solid $cta-outline-color;
+      }
+    }
+    &--title {
+      margin-bottom: 2rem;
+    }
+    &--textarea {
+      height: 100%;
+      font-family: inherit;
+    }
+  }
+  &__uploadFile {
+    display: flex;
+    justify-content: center;
+    margin: 6rem auto;
+    &::-webkit-file-upload-button {
+      visibility: hidden;
+    }
+    &::before {
+      content: 'ADD YOUR COVER PHOTO';
+      height: 5rem;
+      width: 100%;
+      font-size: 1rem;
+      font-weight: 700;
+      color: $bg-color;
+      background-color: $cta-outline-color;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    @include tablet {
+      width: 30rem;
+    }
+    &:hover::before {
+      cursor: pointer;
+      background-color: $CTA-hov-color;
+    }
+    &:active::before {
+      background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+    }
+  }
+  &__btnWrapper {
+    display: flex;
+    gap: 1rem;
+    grid-column: 2;
+    flex-direction: column-reverse;
+    margin-top: 2rem;
+    justify-content: flex-end;
+    position: relative;
+    @include tablet {
+      flex-direction: row;
+    }
+    &--videoUploaded {
+      position: absolute;
+      bottom: 11rem;
+      right: calc((100vw / 2) - 12rem);
+      @include tablet {
+        bottom: 5rem;
+        right: 0;
+      }
+      background-color: $cta-outline-color;
+      width: 25rem;
+      margin: auto;
+      padding: 2rem 2rem;
+
+      @include tablet {
+        width: 40rem;
+        padding: 2rem 8rem;
+      }
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      border-radius: 4px;
+      &-btn {
+        height: 3rem !important;
+        width: 100%;
+        color: #0065ad !important;
+        background-color: #fafafa !important;
+        &:hover {
+          color: #fafafa !important;
+          background-color: $CTA-hov-color !important;
+        }
+      }
+    }
+  }
+
+  &__devider {
+    display: none;
+    @include tablet {
+      display: block;
+    }
+    &-long {
+      margin: 0;
+    }
+  }
+}
+#cancel {
+  background-color: $bg-color;
+  color: $cta-outline-color;
+}
+#closeUploadBox {
+  display: none;
+}
+
+.uploadGuide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &__title {
+    color: $label-color;
+    font-weight: 600;
+    letter-spacing: 1.5;
+    align-self: flex-start;
+    margin-top: 1rem;
+    @include desktop {
+      align-self: center;
+    }
+  }
+  &__tips {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    @include desktop {
+      flex-direction: row;
+      justify-content: center;
+      padding: 0 10rem;
+    }
+    &-tip {
+      background-color: $form-bg-color;
+      color: $txt-color-1;
+      border: 1px solid $divider-color;
+      border-radius: 4px;
+      padding: 1rem 2rem;
+      width: 80%;
+      height: auto;
+      font-size: 1.2rem;
+      @include desktop {
+        width: 30%;
+        height: 8.5rem;
+      }
+    }
+  }
+}
+.error {
+  color: rgb(253, 66, 66);
+}
