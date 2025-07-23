@@ -62,7 +62,7 @@ const Upload = () => {
     console.log(isOpen);
     try {
       const response = await axios.post(
-        'http://localhost:8888/videos',
+        `${process.env.REACT_APP_BACKEND_URL}/videos`,
         formData,
         {
           headers: {

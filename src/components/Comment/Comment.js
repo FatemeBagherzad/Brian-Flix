@@ -61,7 +61,7 @@ const Comment = ({
   const editPostCommentHandler = (event) => {
     event.preventDefault();
     axios
-      .patch('http://localhost:8888/videos/' + currentVideo.id, {
+      .patch(`${process.env.REACT_APP_BACKEND_URL}/videos/${currentVideo.id}`, {
         headers: {},
         data: {
           id: id,
@@ -80,7 +80,7 @@ const Comment = ({
 
   const likeCommentHandler = () => {
     axios
-      .patch('http://localhost:8888/videos/' + currentVideo.id, {
+      .patch(`${process.env.REACT_APP_BACKEND_URL}/videos/${currentVideo.id}`, {
         headers: {},
         data: {
           id: id,
@@ -96,12 +96,15 @@ const Comment = ({
   const deleteCommentHandler = (event) => {
     event.preventDefault();
     axios
-      .delete('http://localhost:8888/videos/' + currentVideo.id, {
-        headers: {},
-        data: {
-          idToDelete: id,
-        },
-      })
+      .delete(
+        `${process.env.REACT_APP_BACKEND_URL}/videos/${currentVideo.id}`,
+        {
+          headers: {},
+          data: {
+            idToDelete: id,
+          },
+        }
+      )
       .then((response) => {
         console.log(response);
         setCurrentVideo(response.data);

@@ -17,17 +17,19 @@ function Home() {
   const [restaurants, setRestaurants] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:8888/videos').then((response) => {
-      setVideos(response.data);
-      setCurrentVideo(response.data[0]);
-    });
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}/videos`)
+      .then((response) => {
+        setVideos(response.data);
+        setCurrentVideo(response.data[0]);
+      });
   }, []);
 
   useEffect(() => {
     if (videos.length > 0) {
       const currentid = videoId ? videoId : videos[0].id;
       axios
-        .get('http://localhost:8888/videos/' + currentid)
+        .get(`${process.env.REACT_APP_BACKEND_URL}/videos/${currentid}`)
         .then((response) => {
           window.scroll({ top: 0 });
           setCurrentVideo(response.data);
@@ -38,7 +40,7 @@ function Home() {
   const commentSubmitHandler = (event) => {
     event.preventDefault();
     axios
-      .post('http://localhost:8888/videos/' + currentVideo.id, {
+      .post(`${process.env.REACT_APP_BACKEND_URL}/videos/${currentVideo.id}`, {
         name: 'Fateme',
         comment: `${event.target.comment.value}`,
         likes: 0,
