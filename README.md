@@ -1,4 +1,4 @@
-# BrainFlix Project
+# BrainFlix
 
 In this project, I converted an existing static website into a React application by breaking the UI into reusable components and managing component behavior with React hooks.
 
