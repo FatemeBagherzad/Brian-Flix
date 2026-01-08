@@ -1,17 +1,18 @@
 # BrainFlix Project
 
-In this project I practiced chunking an existing
-site into React components and converting an
-existing static site into a React app.
-Also I used and practiced **useState** to add a
-state variable to all components.
+In this project, I converted an existing static website into a React application by breaking the UI into reusable components and managing component behavior with React hooks.
 
-📢I rebuild whole control bar of video by myself
+One of the main parts of the project was **rebuilding the video control bar entirely from scratch**. I implemented custom playback controls, progress tracking, and user interactions without relying on the browser’s default video controls.
 
-using react **useState** 🎉<br/> -
-**Update1**: I have fixed video control reload with useEffect🥳<br/> -
-**Update2**: I have tried editing, deleting and posting comments on every video which I hope I can Improve it in future😊<br/>
-**Update3**: I created back end for this project using: express, cors, multer,morgan, dotenv, uniqid and nodemon. Uploading image to back end was challenging that I could solve it🥳.
+As the project evolved, I added a backend using Node.js and Express to support additional functionality. This included handling image uploads, managing data, and logging requests. Implementing file uploads on the server side was a challenge, but I was able to solve it and integrate it smoothly.
+
+## Highlights
+
+<li>Refactored a static site into a component-based React app</li>
+<li>Built a fully custom video control bar</li>
+<li>Fixed video reload issues using useEffect</li>
+<li>Implemented comment creation, editing, and deletion</li>
+<li>Developed a backend with Express, CORS, Multer, Morgan, dotenv, uniqid, and Nodemon</li>
 
 ## Animated Demo
 
