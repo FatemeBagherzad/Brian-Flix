@@ -26,10 +26,18 @@ The React version: **v18.17.0**
 
 ## Technologies
 
-<li>1-React</li>
-<li>2-Java Script</li>
-<li>3-HTML,CSS,SASS</li>
-<li>4-Express</li>
+<li>React, React Router</li>
+<li>Java Script</li>
+<li>HTML,CSS,SASS</li>
+<li>Axios</li>
+<li>Node.js</li>
+<li>Express</li>
+<li>REST APIs</li>
+<li>Multer</li>
+<li>CORS</li>
+<li>Nodemon</li>
+<li>Git, GitHub</li>
+<li></li>
 
 ## Setup
 
