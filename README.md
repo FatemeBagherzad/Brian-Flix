@@ -37,7 +37,6 @@ The React version: **v18.17.0**
 <li>CORS</li>
 <li>Nodemon</li>
 <li>Git, GitHub</li>
-<li></li>
 
 ## Setup
 
