@@ -6,7 +6,7 @@ One of the main parts of the project was **rebuilding the video control bar enti
 
 As the project evolved, I added a backend using Node.js and Express to support additional functionality. This included handling image uploads, managing data, and logging requests. Implementing file uploads on the server side was a challenge, but I was able to solve it and integrate it smoothly.
 
-## Highlights
+### Highlights
 
 <li>Refactored a static site into a component-based React app</li>
 <li>Built a fully custom video control bar</li>
